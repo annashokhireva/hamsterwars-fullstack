@@ -9,7 +9,7 @@ const path = require('path');
 // const losers = require('./routes/losers.js');
 
 
-const PORT = process.env.PORT || 1204;
+const PORT = process.env.PORT || 1337;
 const buildFolder = path.join(__dirname, '../build');
 // const imgFolder = path.join(__dirname, 'img');
 
@@ -29,7 +29,7 @@ app.use(express.static(buildFolder));
 //Routes
 
 app.get('/', (req, res) => {
-	res.send('hello from server')
+	res.send('Hello from server')
 });
 
 app.get('*', (req, res) => {
