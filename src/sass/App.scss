@@ -1,5 +1,8 @@
 @import './variables.scss';
 @import './nav.scss';
+@import './button.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 * {
 	box-sizing: border-box;
@@ -7,6 +10,8 @@
 
 body {
 	margin: 0;
+	color: rgb(245, 242, 235);
+	font-family: 'Roboto';
 }
 
 main {
@@ -15,37 +20,34 @@ main {
 	align-items: center;
 	position: relative;
 	height: fit-content;
-	height: 85vh;
+	height: 90vh;
 }
 
 .bkg-img {
-	width: 100%;
+	width: 100vw;
 	position: absolute;
 	z-index: -1;
+	height: 100%;
 }
 
-.header-img {
-	width: 20em;
-	margin: 2em 0;
-}
+// .header-img {
+// 	width: 20em;
+// 	margin: 4em 0;
+// }
 
-.logo {
-	width: 4em;
-	margin: 0 2em;
-}
 
-@media only screen and (min-width: 600px) {
-	.header-img {
-		width: 30em;
-	}
-}
+// @media only screen and (min-width: 600px) {
+// 	.header-img {
+// 		width: 30em;
+// 	}
+// }
 
 @media only screen and (min-width: 768px) {
 	main {
 		margin: 0 5em;
 	}
 
-	.header-img {
-		width: 40em;
-	}
+	// .header-img {
+	// 	width: 40em;
+	// }
 }

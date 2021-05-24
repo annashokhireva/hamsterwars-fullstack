@@ -11,7 +11,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 1337;
 const buildFolder = path.join(__dirname, '../build');
-// const imgFolder = path.join(__dirname, '../build/img');
+const imgFolder = path.join(__dirname, '../static/img');
 
 //Middleware
 app.use( (req, res, next) => {
@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static(buildFolder));
-// app.use(express.static(imgFolder));
+app.use(express.static(imgFolder));
 
 
 //Routes
@@ -39,11 +39,11 @@ app.get('*', (req, res) => {
 
 //REST API 
 
-// app.use('/hamsters', hamsters);
-// app.use('/matches', matches);
-// app.use('/matchWinners', matchWinners);
-// app.use('/winners', winners);
-// app.use('/losers', losers);
+app.use('/hamsters', hamsters);
+app.use('/matches', matches);
+app.use('/matchWinners', matchWinners);
+app.use('/winners', winners);
+app.use('/losers', losers);
 
 // Start server
 

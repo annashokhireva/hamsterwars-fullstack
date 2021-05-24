@@ -6,9 +6,9 @@ import {
 	NavLink,
 	Redirect,
 } from "react-router-dom";
-import Battle from './components/battle/Battle';
-import Gallery from './components/gallery/Gallery';
-import HomePage from './components/home/HomePage'
+import Battle from './components/Battle';
+import Gallery from './components/Gallery';
+import HomePage from './components/HomePage'
 import './sass/App.scss';
 
 function App() {
@@ -17,15 +17,9 @@ function App() {
 			<div className="App">
 				<header className="App-header">
 					<nav>
-						<img src="/icons/hamster-logo.svg" class="logo"></img>
-						
-						<div class="nav-links">
-							<div></div>
-							<Link to="/"> Home </Link>
-							<Link to="/battle"> Compete </Link>
-							<Link to="/gallery"> Gallery </Link>
-						</div>
-						
+						<Link to="/"> Home </Link>
+						<Link to="/battle"> Compete </Link>
+						<Link to="/gallery"> Gallery </Link>	
 					</nav>
 				</header>
 			</div>
