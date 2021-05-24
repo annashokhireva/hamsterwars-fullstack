@@ -6,10 +6,10 @@ import {
 	NavLink,
 	Redirect,
 } from "react-router-dom";
-import "./App.css";
 import Battle from './components/battle/Battle';
 import Gallery from './components/gallery/Gallery';
-import Start from './components/start/Start'
+import HomePage from './components/home/HomePage'
+import './sass/App.scss';
 
 function App() {
 	return (
@@ -17,14 +17,21 @@ function App() {
 			<div className="App">
 				<header className="App-header">
 					<nav>
-						<Link to="/"> Start </Link>
-						<Link to="/battle"> Tävla </Link>
-						<Link to="/gallery"> Galleri </Link>
+						<img src="/icons/hamster-logo.svg" class="logo"></img>
+						
+						<div class="nav-links">
+							<div></div>
+							<Link to="/"> Home </Link>
+							<Link to="/battle"> Compete </Link>
+							<Link to="/gallery"> Gallery </Link>
+						</div>
+						
 					</nav>
 				</header>
 			</div>
 
 			<main>
+				<img src="/img/space.jpg" class="bkg-img"></img>
 				<Switch>
 					<Route path="/battle">
 						<Battle />
@@ -35,9 +42,10 @@ function App() {
 					</Route>
 
 					<Route path="/">
-						<Start />
+						<HomePage />
 					</Route>
 				</Switch>
+				
 			</main>
 		</Router>
 	);

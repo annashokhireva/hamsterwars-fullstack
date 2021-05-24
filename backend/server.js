@@ -11,7 +11,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 1337;
 const buildFolder = path.join(__dirname, '../build');
-// const imgFolder = path.join(__dirname, 'img');
+// const imgFolder = path.join(__dirname, '../build/img');
 
 //Middleware
 app.use( (req, res, next) => {
@@ -35,6 +35,7 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../build/index.html'))
 });
+
 
 //REST API 
 
