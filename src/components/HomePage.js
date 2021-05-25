@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-const HomeMain = styled.div`
-	overflow: scroll;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-`
+// const HomeMain = styled.div`
+// 	overflow: scroll;
+// 	width: 100%;
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: space-between;
+// 	align-items: center;
+// `
 const HeaderImg = styled.img`
 	width: 20em;
 	margin-top: 4em;
@@ -22,12 +22,12 @@ const HeaderImg = styled.img`
 `
 
 const HomePage = () => (
-	<HomeMain>
+	<div className="main-view">
 		<HeaderImg src="/icons/h-w-logo.svg"></HeaderImg>
 		<h3> Let the cutest hamster win! </h3>
 		<button> Start battle </button> 
 		<div></div>
-	</HomeMain>
+	</div>
 )
 
 export default HomePage;

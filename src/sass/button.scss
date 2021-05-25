@@ -1,16 +1,23 @@
+@import './variables.scss';
+
 button {
 	font-size: 32px;
-	color: #ffe81f;
-	border: 3px solid #ffe81f;
+	border: 3px solid $starwars_red;
+	color: $starwars_red;
+	background-color: transparentize($starwars_yellow, 0.2);
 	border-radius: 10px;
-	background: none;
+	// background: none;
 	cursor: pointer;
 	text-transform: uppercase;
 	padding: 10px 20px;
 	outline: none;
 	margin-bottom: 1.5em;
+	font-weight: 600;
 
 	&:hover {
-		border: 5px solid #ece05c;
+		zoom: 1.05;
+		color: $starwars_yellow;
+		border: 3px solid $starwars_yellow;
+		background-color: transparentize($starwars_red, 0.2);	
 	}
 }

@@ -32,6 +32,12 @@ app.get('/', (req, res) => {
 	res.send('Hello from server')
 });
 
+const hamsters = ['Router', 'Switch', 'Link']
+
+app.get('/hamsters', (req, res) => {
+	res.send(hamsters);
+})
+
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../build/index.html'))
 });
@@ -39,11 +45,11 @@ app.get('*', (req, res) => {
 
 //REST API 
 
-app.use('/hamsters', hamsters);
-app.use('/matches', matches);
-app.use('/matchWinners', matchWinners);
-app.use('/winners', winners);
-app.use('/losers', losers);
+// app.use('/hamsters', hamsters);
+// app.use('/matches', matches);
+// app.use('/matchWinners', matchWinners);
+// app.use('/winners', winners);
+// app.use('/losers', losers);
 
 // Start server
 

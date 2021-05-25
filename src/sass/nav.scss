@@ -7,4 +7,21 @@ nav {
 	height: 10vh;
 	width: 100vw;
 
+	a {
+		color: white;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1.5em;
+	
+		&:hover {
+			color: $starwars_yellow;
+		}
+	
+	}
+
+	.is-active {
+		text-decoration: underline;
+		color: $starwars_yellow;
+	}
+	
 }
