@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const path = require('path');
-// const hamsters = require('./routes/hamsters.js');
-// const matches = require('./routes/matches.js');
-// const matchWinners = require('./routes/matchWinners.js');
-// const winners = require('./routes/winners.js');
-// const losers = require('./routes/losers.js');
+const hamsters = require('./routes/hamsters.js');
+const matches = require('./routes/matches.js');
+const matchWinners = require('./routes/matchWinners.js');
+const winners = require('./routes/winners.js');
+const losers = require('./routes/losers.js');
 
 
 const PORT = process.env.PORT || 1337;
@@ -32,10 +32,10 @@ app.get('/', (req, res) => {
 	res.send('Hello from server')
 });
 
-const hamsters = ['Router', 'Switch', 'Link']
+const test = ['test']
 
-app.get('/hamsters', (req, res) => {
-	res.send(hamsters);
+app.get('/api/hamsters', (req, res) => {
+	res.send(test);
 })
 
 app.get('*', (req, res) => {
@@ -45,11 +45,11 @@ app.get('*', (req, res) => {
 
 //REST API 
 
-// app.use('/hamsters', hamsters);
-// app.use('/matches', matches);
-// app.use('/matchWinners', matchWinners);
-// app.use('/winners', winners);
-// app.use('/losers', losers);
+app.use('/hamsters', hamsters);
+app.use('/matches', matches);
+app.use('/matchWinners', matchWinners);
+app.use('/winners', winners);
+app.use('/losers', losers);
 
 // Start server
 

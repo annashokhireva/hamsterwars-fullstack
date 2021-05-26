@@ -20,7 +20,7 @@ function App() {
 	const [hamsters, setHamsters] = useState([]);
 
 	useEffect(() => {
-		fetch("/hamsters")
+		fetch("/api/hamsters")
 			.then((res) => res.json())
 			.then(
 				(data) => {
@@ -77,7 +77,7 @@ function App() {
 
 				<ul>
 					{hamsters.map((hamster) => (
-						<li key={hamster.id}>{hamster.name}</li>
+						<li key={hamster.id}>{hamster}</li>
 					))}
 				</ul>
 					<Switch>
