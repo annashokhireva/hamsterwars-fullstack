@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-// import { useEffect, useState } from 'react';
+import styled from "styled-components";
+// import { useParams } from "react-router-dom";
+// import { useEffect, useState } from "react";
 
 const Contestants = styled.div`
 	width: 100%;
@@ -29,7 +30,30 @@ const HamsterBox = styled.div`
 	}
 `
 
-const Battle = () => {
+const Battle = (props) => {
+
+	// const [hamster1, setHamster1] = useState({});
+	// const [hamster2, setHamster2] = useState({});
+	// const params = useParams();
+
+	// useEffect(() => {
+
+	// 	async function getHamsters() {
+	// 		if(params.id1 && params.id2) {
+                
+    //             fetchIdHamster(setHamster1, params.id1);
+    //             fetchIdHamster(setHamster2, params.id2);
+
+    //         } else {
+                
+    //             await fetchHamster(setHamster1);
+    //             await fetchHamster(setHamster2, hamster1.id);
+
+    //         }
+	// 	}
+
+	// 	getHamsters();
+	// }, [params])
 
 	// const [hamsters, setHamsters] = useState('');
 
@@ -47,14 +71,14 @@ const Battle = () => {
 		<div className="main-view">
 			<h2> Fight! </h2>
 			<Contestants>
-			{/* {hamsters
-				? hamsters.map(hamster => ( */}
-					<HamsterBox></HamsterBox>
-				<HamsterBox ></HamsterBox>
+			{props.hamsters
+				? props.hamsters.map(hamster => ( 
+					<HamsterBox> {hamster.name}</HamsterBox>
+					// <HamsterBox ></HamsterBox>
 			
-				{/* ))
-				: 'Preparing contestants' */}
-			{/* } */}
+				))
+				: 'Preparing contestants' 
+			}
 				
 			</Contestants>
 		</div>

@@ -2,16 +2,16 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const path = require('path');
-const hamsters = require('./routes/hamsters.js');
-const matches = require('./routes/matches.js');
-const matchWinners = require('./routes/matchWinners.js');
-const winners = require('./routes/winners.js');
-const losers = require('./routes/losers.js');
+const hamsters = require('./routes/hamsters');
+// const matches = require('./routes/matches.js');
+// const matchWinners = require('./routes/matchWinners.js');
+// const winners = require('./routes/winners.js');
+// const losers = require('./routes/losers.js');
 
 
 const PORT = process.env.PORT || 1337;
 const buildFolder = path.join(__dirname, '../build');
-const imgFolder = path.join(__dirname, '../static/img');
+const imgFolder = path.join(__dirname, '../build/img');
 
 //Middleware
 app.use( (req, res, next) => {
@@ -28,15 +28,17 @@ app.use(express.static(imgFolder));
 
 //Routes
 
-app.get('/', (req, res) => {
-	res.send('Hello from server')
-});
+// app.get('/', (req, res) => {
+// 	res.send('Hello from server')
+// });
 
-const test = ['test']
+// app.get('/api/hamsters', (req, res) => {
+// 	res.send();
+// })
 
-app.get('/api/hamsters', (req, res) => {
-	res.send(test);
-})
+app.use('/api/hamsters', hamsters)
+
+app.use('/api/assets', express.static(__dirname + '/../public/img'));
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../build/index.html'))
@@ -45,11 +47,11 @@ app.get('*', (req, res) => {
 
 //REST API 
 
-app.use('/hamsters', hamsters);
-app.use('/matches', matches);
-app.use('/matchWinners', matchWinners);
-app.use('/winners', winners);
-app.use('/losers', losers);
+// app.use('/hamsters', hamsters);
+// app.use('/matches', matches);
+// app.use('/matchWinners', matchWinners);
+// app.use('/winners', winners);
+// app.use('/losers', losers);
 
 // Start server
 

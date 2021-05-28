@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 // const HomeMain = styled.div`
 // 	overflow: scroll;
@@ -25,7 +26,7 @@ const HomePage = () => (
 	<div className="main-view">
 		<HeaderImg src="/icons/h-w-logo.svg"></HeaderImg>
 		<h3> Let the cutest hamster win! </h3>
-		<button> Start battle </button> 
+		<Link to="/battle" className="button"> Start battle </Link> 
 		<div></div>
 	</div>
 )

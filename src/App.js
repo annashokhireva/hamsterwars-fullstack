@@ -10,22 +10,24 @@ import { useEffect, useState } from "react";
 import Battle from "./components/Battle";
 import Gallery from "./components/Gallery";
 import HomePage from "./components/HomePage";
+import HamsterForm from "./components/HamsterForm";
 import "./sass/App.scss";
 
-// const hamstersData = [];
+//const hamstersData = [];
 
 function App() {
+
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [hamsters, setHamsters] = useState([]);
+	const [hamsters, setHamsters] = useState(null);
 
 	useEffect(() => {
-		fetch("/api/hamsters")
+		fetch("/api/hamsters", { method: "GET" })
 			.then((res) => res.json())
 			.then(
-				(data) => {
+				(result) => {
 					setIsLoaded(true);
-					setHamsters(data);
+					setHamsters(result);
 				},
 
 				(error) => {
@@ -38,15 +40,9 @@ function App() {
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	} else if (!isLoaded) {
-		return <div>Loading...</div>;
+		return <div>Loading hamsters...</div>;
 	} else {
-		// return (
-		// 	<ul>
-		// 		{hamsters.map((hamster) => (
-		// 			<li key={hamster.id}>{hamster.name}</li>
-		// 		))}
-		// 	</ul>
-		// );
+		
 		return (
 			<Router>
 				<div className="App">
@@ -67,7 +63,7 @@ function App() {
 						</nav>
 					</header>
 				</div>
-	
+
 				<main>
 					<img
 						src="/img/space.jpg"
@@ -75,21 +71,25 @@ function App() {
 						className="bkg-img"
 					></img>
 
-				<ul>
-					{hamsters.map((hamster) => (
-						<li key={hamster.id}>{hamster}</li>
-					))}
-				</ul>
+					{/* <ul>
+						{hamsters.map((hamster) => (
+							<li key={hamster.id}>{hamster.name}</li>
+						))}
+					</ul> */}
+
 					<Switch>
-						<Route path="/battle">
-							<Battle />
+						<Route path="/form">
+							<HamsterForm/>
 						</Route>
-	
-						<Route
-							path="/gallery"
-							render={() => <Gallery items={hamsters} />}
-						/>
-	
+
+						<Route path="/battle">
+							<Battle hamsters={hamsters}/>
+						</Route>
+
+						<Route path="/gallery">
+							<Gallery hamsters={hamsters} />
+						</Route>
+						
 						<Route path="/">
 							<HomePage />
 						</Route>
@@ -98,7 +98,6 @@ function App() {
 			</Router>
 		);
 	}
-
 }
 
 export default App;
