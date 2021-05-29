@@ -33,14 +33,22 @@ function App() {
 				(error) => {
 					setIsLoaded(true);
 					setError(error);
+					console.log(error);
 				}
 			);
 	}, []);
 
 	if (error) {
-		return <div>Error: {error.message}</div>;
+		return <div className="error-message">
+					<img src="/img/500-error.png"></img>
+				</div>;;
 	} else if (!isLoaded) {
-		return <div>Loading hamsters...</div>;
+		return <div class="loader">
+					<div class="loading">
+						<p>loading hamsters</p>
+		   				<span></span>
+					</div>
+	 			</div>;
 	} else {
 		
 		return (

@@ -1,0 +1,14 @@
+.error-message {
+	width: 100vw;
+	height: 100vh;
+	display: flex; 
+	justify-content: center;
+	align-items: center;
+	background-color: $starwars_pink;
+	color: $starwars_dark;
+
+	img {
+		width: 80vw;
+		height: auto;
+	}
+}

@@ -1,8 +1,10 @@
 @import './variables.scss';
 @import './nav.scss';
-@import './button.scss';
+@import './buttons.scss';
 @import './hamster-box.scss';
-@import './btn-icons.scss';
+@import './form.scss';
+@import './error.scss';
+@import './loader.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
@@ -14,7 +16,7 @@ body {
 	margin: 0;
 	color: rgb(245, 242, 235);
 	font-family: 'Roboto';
-	background-color: rgb(20, 20, 24);
+	background-color: $starwars_dark;
 }
 
 main {
@@ -57,6 +59,14 @@ main {
 @media only screen and (min-width: 768px) {
 	main {
 		margin: 0 5em;
+	}
+
+	h2 {
+		font-size: 32px;
+	}
+
+	h3 {
+		font-size: 24px;
 	}
 
 	// .header-img {

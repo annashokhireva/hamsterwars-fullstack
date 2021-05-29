@@ -1,11 +1,12 @@
 @import './variables.scss';
 
-.button {
+.button,
+.submit-hamster {
 	font-size: 32px;
 	border: 3px solid $starwars_red;
 	color: $starwars_red;
 	background-color: transparentize($starwars_yellow, 0.2);
-	border-radius: 10px;
+	border-radius: $corners;
 	// background: none;
 	cursor: pointer;
 	text-transform: uppercase;
@@ -15,10 +16,26 @@
 	font-weight: 600;
 	text-decoration: none;
 
-	&:hover {
+	&:hover:not([disabled]) {
 		zoom: 1.05;
 		color: $starwars_yellow;
 		border: 3px solid $starwars_yellow;
 		background-color: transparentize($starwars_red, 0.2);	
 	}
+	
+	&:disabled {
+		background-color:transparentize($starwars_yellow, 0.9);
+		opacity: 60%;
+	}
 }
+
+
+
+.delete {
+	width: 30px;
+	margin-left: 93%;
+	margin-bottom: -7%;
+	z-index: 1;
+}
+
+

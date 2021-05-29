@@ -1,6 +1,9 @@
 import styled from "styled-components";
-// import { useParams } from "react-router-dom";
-// import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import {fetchRandomHamster} from './utils/RandomHamster';
+import {fetchHamsterId} from './utils/HamsterId';
 
 const Contestants = styled.div`
 	width: 100%;
@@ -16,73 +19,70 @@ const Contestants = styled.div`
 	}
 `
 
-const HamsterBox = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 10em;	
-	height: 5em;	
-	border: 2px solid yellow;
-	margin: 3em 1em; 
+const Battle = () => {
 
-	@media only screen and (min-width: 600px) {
-		margin: 1em 3em; 
-	}
-`
+	const [hamster1, setHamster1] = useState({});
+	const [hamster2, setHamster2] = useState({});
+	
+	const params = useParams();
 
-const Battle = (props) => {
+	useEffect(() => {
+		async function getHamsters() {
 
-	// const [hamster1, setHamster1] = useState({});
-	// const [hamster2, setHamster2] = useState({});
-	// const params = useParams();
+			if(params.id1 && params.id2) {
+				
+				fetchHamsterId(setHamster1, params.id1);
+				fetchHamsterId(setHamster2, params.id2);
 
-	// useEffect(() => {
+			} else {
+				
+				await fetchRandomHamster(setHamster1);
+				await fetchRandomHamster(setHamster2, hamster1.id);
 
-	// 	async function getHamsters() {
-	// 		if(params.id1 && params.id2) {
-                
-    //             fetchIdHamster(setHamster1, params.id1);
-    //             fetchIdHamster(setHamster2, params.id2);
+			}
 
-    //         } else {
-                
-    //             await fetchHamster(setHamster1);
-    //             await fetchHamster(setHamster2, hamster1.id);
-
-    //         }
-	// 	}
-
-	// 	getHamsters();
-	// }, [params])
-
-	// const [hamsters, setHamsters] = useState('');
-
-	// useEffect(() => {
-	// 	async function get() {
-	// 		const response = await fetch('/hamsters', { method: 'GET' });
-	// 		const data = await response.json();
+		}
 		
-	// 		setHamsters(data);
-	// 	}
-	// 	get();
-	// }, []);
+		getHamsters();
+
+    }, [params])
+
+	let contestants = hamster1 && hamster2;
 
 	return(
 		<div className="main-view">
 			<h2> Fight! </h2>
-			<Contestants>
-			{props.hamsters
-				? props.hamsters.map(hamster => ( 
-					<HamsterBox> {hamster.name}</HamsterBox>
-					// <HamsterBox ></HamsterBox>
+	
+			{contestants ? (
+				<Contestants>
+					
+					<img
+						src={`/api/assets/${hamster1.imgName}`}
+						alt={`Hamster  ${hamster1.id}`}
+						className="hamster-box-battle"
+					></img>
 			
-				))
-				: 'Preparing contestants' 
+				
+					<img
+						src={`/api/assets/${hamster2.imgName}`}
+						alt={`Hamster  ${hamster2.id}`}
+						className="hamster-box-battle"
+					></img>
+					
+				</Contestants>
+			) : <div class="loader">
+					<div class="loading">
+						<p>loading contestants</p>
+						<span></span>
+					</div>
+		 		</div> 
 			}
 				
-			</Contestants>
+			
 		</div>
 	)
 }
 
 export default Battle;
+
+// on reload får felmeddelande

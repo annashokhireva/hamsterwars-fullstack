@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 // import Modal from "./HamsterModal";
 
 const GalleryGrid = styled.div`
@@ -10,6 +11,7 @@ const GalleryGrid = styled.div`
 	row-gap: 1.5em;
 	column-gap: 2.5em;
 	margin: 2em;
+	padding: 0 2em;
 
 	> * {
 		justify-self: center;
@@ -21,82 +23,65 @@ const GalleryGrid = styled.div`
 	}
 `;
 
+function deleteHamster(hamsters, hamster){
+// 	const index = hamsters.indexOf(hamster);
+// 				hamsters.splice(index, 1);
+}
 
-const Gallery = (props) => (
-	<div className="main-view">
-		<h1> Galleriet </h1>
-		<GalleryGrid>
-			<Link to="/form" className="add-hamster">
-				<img src="/icons/hamster-logo.svg" alt="Hamster icon" className="hamster-img hamster-icon"></img>
-				<div className="add-new">
-					<h2>+ Add new hamster</h2>
-				</div>
-				
-			</Link>
-			
-			{props.hamsters
-				? props.hamsters.map((hamster) => (
-						<div
-							className="hamster-box"
-							key={hamster.id}
-							// onClick={(e) => {
-							// 	this.showModal();
-							// }}
-						>
-							<img
-								src="/icons/delete.svg"
-								alt="Cross icon"
-								className="delete"
-							></img>
+const Gallery = (props) => {
+	const [del, setDel] = useState(false);
 
-							<img
-								src={`/api/assets/${hamster.imgName}`}
-								alt={`Hamster  ${hamster.id}`}
-								className="hamster-img"
-							></img>
+	return (
+		<div className="main-view">
+			<h1> Galleriet </h1>
+			<GalleryGrid>
+				<Link to="/form" className="add-hamster">
+					<img
+						src="/icons/hamster-logo.svg"
+						alt="Hamster icon"
+						className="hamster-img hamster-icon"
+					></img>
+					<div className="add-new">
+						<h3>+ Add new hamster</h3>
+					</div>
+				</Link>
 
-							<div className="hamster-info">
-								<h2>{hamster.name} </h2>
+				{props.hamsters
+					? props.hamsters.map((hamster) => (
+							<div
+								className="hamster-box"
+								key={hamster.id}
+								onMouseEnter={() => setDel(true)}
+								onMouseLeave={() => setDel(false)}
+								// onClick={(e) => {
+								// 	this.showModal();
+								// }}
+							>
+								{/* {del ? (
+									<img
+										src="/icons/delete.svg"
+										alt="Cross icon"
+										className="delete"
+										onClick={deleteHamster(props.hamsters, hamster)}
+									></img>
+								) : null} */}
+
+								<img
+									src={`/api/assets/${hamster.imgName}`}
+									alt={`Hamster  ${hamster.id}`}
+									className="hamster-img"
+								></img>
+
+								<div className="hamster-info">
+									<h2>{hamster.name} </h2>
+								</div>
 							</div>
-						</div>
-				  ))
-				: "Preparing contestants"}
-		</GalleryGrid>
-		{/* <Modal /> */}
-	</div>
-);
+					  ))
+					: "Preparing contestants"}
+			</GalleryGrid>
+			{/* <Modal /> */}
+		</div>
+	);
+};
 
 export default Gallery;
-
-// import { useEffect, useState } from 'react';
-
-// const Gallery = () => {
-// 	const [hamsters, setHamsters] = useState('');
-
-// 	useEffect(() => {
-// 		async function get() {
-// 			const response = await fetch('/hamsters', { method: 'GET' });
-// 			const data = await response.json();
-
-// 			setHamsters(data);
-// 		}
-// 		get();
-// 	}, []);
-
-// 	return(
-// 		<div>
-// 			<h1> Galleriet </h1>
-
-// 			{hamsters
-// 				? hamsters.map(hamster => (
-// 					<div key={hamster.id}>{hamster}</div>
-
-// 				))
-// 				: 'Preparing contestants'
-// 			}
-
-// 		</div>
-// 	)
-// }
-
-// export default Gallery;

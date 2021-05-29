@@ -1,0 +1,60 @@
+@import './variables.scss';
+
+.hamster-form {
+	display: flex;
+	gap: 1em;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	overflow: scroll;
+
+	h2 {
+		text-align: center;
+		margin: 1em 0 0;
+		color: $starwars_yellow;
+	}
+
+	.input-field {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 1em;
+		position: relative;
+		width: 500px;
+		color: $starwars_yellow;
+
+		label {
+			font-size: 24px;
+			margin-left: 0.2em;
+		}
+
+		input {
+			height: 3em;
+			font-size: 14px;
+			border-radius: $corners;
+			padding-left: 0.5em;
+		}
+		.imgClass {
+			color: red;
+		}
+
+		.error {
+			border: 3px solid $starwars_red;
+		}
+
+		.valid { 
+			border: 3px solid $starwars_green;
+		}
+	}
+
+	.message {
+		position: absolute;
+		top: 4em;
+		color: white;
+		background-color: $starwars_red;
+		margin: 0.5em 0 0 0.1em;
+		padding: 0.2em;
+		border-radius: $corners;
+		box-sizing: border-box;
+	}
+}
