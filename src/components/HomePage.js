@@ -25,7 +25,7 @@ const HeaderImg = styled.img`
 const HomePage = () => (
 	<div className="main-view">
 		<HeaderImg src="/icons/h-w-logo.svg"></HeaderImg>
-		<h3> Let the cutest hamster win! </h3>
+		<p className="description"> In this game you'll get 2 random hamsters at a time. Click on the one that you like the most. Let the cutest hamster win!  <b>Press the button to start the game.</b></p>
 		<Link to="/battle" className="button"> Start battle </Link> 
 		<div></div>
 	</div>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-// import Modal from "./HamsterModal";
+import Hamster from "./Hamster";
 
 const GalleryGrid = styled.div`
 	width: 100%;
@@ -23,13 +23,16 @@ const GalleryGrid = styled.div`
 	}
 `;
 
-function deleteHamster(hamsters, hamster){
-// 	const index = hamsters.indexOf(hamster);
-// 				hamsters.splice(index, 1);
+function deleteHamster(target){
+	// 	const index = hamsters.indexOf(hamster);
+	// 				hamsters.splice(index, 1);
+	console.log(target);
 }
 
+
 const Gallery = (props) => {
-	const [del, setDel] = useState(false);
+	// const [style, setStyle] = useState({display: 'none'});
+
 
 	return (
 		<div className="main-view">
@@ -48,40 +51,59 @@ const Gallery = (props) => {
 
 				{props.hamsters
 					? props.hamsters.map((hamster) => (
-							<div
-								className="hamster-box"
-								key={hamster.id}
-								onMouseEnter={() => setDel(true)}
-								onMouseLeave={() => setDel(false)}
-								// onClick={(e) => {
-								// 	this.showModal();
-								// }}
-							>
-								{/* {del ? (
-									<img
-										src="/icons/delete.svg"
-										alt="Cross icon"
-										className="delete"
-										onClick={deleteHamster(props.hamsters, hamster)}
-									></img>
-								) : null} */}
+						// <Hamster hamster={hamster}/>
+						<div
+							className="hamster-box"
+							key={hamster.id}
+							// onMouseEnter={e => {
+							// 	setStyle({display: 'block'});
+							// }}
+							// onMouseLeave={e => {
+							// 	setStyle({display: 'none'})
+							// }}
+							// onClick={(e) => {
+							// 	this.showModal();
+							// }}
+						>
 
+							<img
+								src={`/api/assets/${hamster.imgName}`}
+								alt={`Hamster  ${hamster.id}`}
+								className="hamster-img"
+							></img>
+
+							<div className="hamster-info">
+								<h2>{hamster.name} </h2>
 								<img
-									src={`/api/assets/${hamster.imgName}`}
-									alt={`Hamster  ${hamster.id}`}
-									className="hamster-img"
+									src="/icons/delete.svg"
+									alt="Cross icon"
+									className="delete"
+									onClick={(event) =>deleteHamster(event.target.parentElement)}
 								></img>
-
-								<div className="hamster-info">
-									<h2>{hamster.name} </h2>
-								</div>
 							</div>
+						</div>
 					  ))
-					: "Preparing contestants"}
+					: "Preparing contestants"} 
+
+					{/* {del ? (
+						<img
+							src="/icons/delete.svg"
+							alt="Cross icon"
+							className="delete"
+							onClick={(event) =>deleteHamster(event.target)}
+						></img>
+					) : null} */}
+
+				{/* <div>
+					<Hamster hamsters={props.hamsters} />
+				</div> */}
+
+				
 			</GalleryGrid>
-			{/* <Modal /> */}
+			
 		</div>
 	);
 };
 
 export default Gallery;
+

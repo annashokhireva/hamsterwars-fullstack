@@ -21,11 +21,13 @@
 		margin: 2em 0;
 		width: 10em;
 	}
+}	
 
+.add-hamster {
 	&:hover {
 		cursor: pointer;
 	}
-}	
+}
 
 .hamster-box-battle {
 	display: flex;
@@ -56,10 +58,14 @@
 .hamster-info {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	background-color: white;
 	border-radius: 0 0 $corners $corners;
 	height: 3em;
+
+	h2 {
+		margin: 0 1em;
+	}
 }
 
 .add-new {

@@ -33,9 +33,12 @@
 
 .delete {
 	width: 30px;
-	margin-left: 93%;
-	margin-bottom: -7%;
-	z-index: 1;
+	margin: 0 1em;
+
+	&:hover {
+		cursor: pointer;
+	}
+	
 }
 
 

@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import {fetchRandomHamster} from './utils/RandomHamster';
-import {fetchHamsterId} from './utils/HamsterId';
+import { fetchRandomHamster } from './utils/RandomHamster';
+import { fetchHamsterId } from './utils/HamsterId';
+import { handleWinner } from './utils/HandleWinner';
 
 const Contestants = styled.div`
 	width: 100%;
@@ -60,6 +61,7 @@ const Battle = () => {
 						src={`/api/assets/${hamster1.imgName}`}
 						alt={`Hamster  ${hamster1.id}`}
 						className="hamster-box-battle"
+						onClick={() => (handleWinner(hamster1, hamster2))}
 					></img>
 			
 				
@@ -67,6 +69,7 @@ const Battle = () => {
 						src={`/api/assets/${hamster2.imgName}`}
 						alt={`Hamster  ${hamster2.id}`}
 						className="hamster-box-battle"
+						onClick={() => (handleWinner(hamster2, hamster1))}
 					></img>
 					
 				</Contestants>

@@ -40,11 +40,11 @@ function App() {
 
 	if (error) {
 		return <div className="error-message">
-					<img src="/img/500-error.png"></img>
+					<img src="/img/500-error.png" alt="error 500"></img>
 				</div>;;
 	} else if (!isLoaded) {
-		return <div class="loader">
-					<div class="loading">
+		return <div className="loader">
+					<div className="loading">
 						<p>loading hamsters</p>
 		   				<span></span>
 					</div>

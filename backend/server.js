@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const path = require('path');
 const hamsters = require('./routes/hamsters');
-// const matches = require('./routes/matches.js');
+const matches = require('./routes/matches.js');
 // const matchWinners = require('./routes/matchWinners.js');
 // const winners = require('./routes/winners.js');
 // const losers = require('./routes/losers.js');
@@ -36,9 +36,11 @@ app.use(express.static(imgFolder));
 // 	res.send();
 // })
 
-app.use('/api/hamsters', hamsters)
+app.use('/api/hamsters', hamsters);
 
 app.use('/api/assets', express.static(__dirname + '/../public/img'));
+
+app.use('/api/matches', matches);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../build/index.html'))

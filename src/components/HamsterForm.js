@@ -60,7 +60,7 @@ const HamsterForm = () => {
 	}
 
 	let validImg = true;
-	let imgErrorMessage = ";";
+	let imgErrorMessage = "";
 	if (!img) {
 		validImg = false;
 		imgErrorMessage = "Please upload image";
@@ -73,16 +73,19 @@ const HamsterForm = () => {
 
 	let invalidForm = !validName || !validAge || !validLoves || !validFavFood || !validImg;
 
+	let imgName = '';
+	function changeName(name){
+		imgName = name.replace(/^.*\\/, "");
+		console.log(imgName);
+	}
+
+	
 	async function addHamster(event) {
 		event.preventDefault();
 
 		const requestOptions = {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				authorization: process.env.PRIVATE_KEY,
-			},
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				name: name,
 				age: age,
@@ -93,19 +96,12 @@ const HamsterForm = () => {
 		};
 
 		try {
-			console.log(
-				requestOptions.body,
-				requestOptions.headers,
-				process.env.PRIVATE_KEY,
-				"form",
-				invalidForm
-			);
+			console.log(requestOptions.body);
 
-			const response = await fetch("/api/hamsters", requestOptions);
+			const response = await fetch('/api/hamsters', requestOptions);
 			const data = await response.json();
-			console.log(data);
 			return data;
-		} 
+		}	
 		catch (error) {
 			console.log("Upload failed, ", error);
 			return null;
@@ -178,11 +174,12 @@ const HamsterForm = () => {
 				<div className="input-field">
 					<label>Upload your hamster's cutest image</label>
 					<input
-						value={img}
+						value={imgName}
 						type="file"
 						accept=".png,.jpg,.jpeg"
 						onBlur={() => setImgTouched(true)}
-						onChange={(event) => setImg(event.target.value)}
+						// onChange={(event) => changeName(event.target.value)}
+						onChange= {event => { changeName(event.target.value); setImg(imgName)}}
 						className={imgClass}
 					></input>
 					{imgTouched ? <div className="message"> {imgErrorMessage} </div> : null}
@@ -200,5 +197,4 @@ export default HamsterForm;
 
 
 // röda prick som stannar kvar
-// file upload path
-// auth anauthorised 
+// kod 400
