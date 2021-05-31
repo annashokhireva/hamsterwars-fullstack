@@ -1,28 +1,28 @@
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
 import { useState, useEffect } from "react";
 
-const Hamster = (props) => {
+const Hamster = (hamster) => {
 
-	function deleteHamster(){
-		// 	const index = hamsters.indexOf(hamster);
-		// 				hamsters.splice(index, 1);
-		
-	}
+	// function deleteHamster(id){
+	// 	// 	const index = hamsters.indexOf(hamster);
+	// 	// 				hamsters.splice(index, 1);
+
+	// 	console.log(id);
+
+	// }
 
 	// useEffect(() => {
 	// 	setHamster(props.hamsters);
 	// }, [props.hamster])
 
-	console.log(props);
+	// ADD onClick listener
 
 
-	render(
+	return(
 		<div>
-			{props.hamsters
-				? props.hamsters.map((hamster) => (
 				<div
 					className="hamster-box"
-					key={hamster.id}
+					key={hamster.hamster.id}
 					// onMouseEnter={e => {
 					// 	setStyle({display: 'block'});
 					// }}
@@ -35,22 +35,22 @@ const Hamster = (props) => {
 				>
 	
 					<img
-						src={`/api/assets/${hamster.imgName}`}
-						alt={`Hamster  ${hamster.id}`}
+						src={`/api/assets/${hamster.hamster.imgName}`}
+						alt={`Hamster  ${hamster.hamster.id}`}
 						className="hamster-img"
 					></img>
 
 					<div className="hamster-info">
-						<h2>{hamster.name} </h2>
+						<h2>{hamster.hamster.name} </h2>
 						<img
 							src="/icons/delete.svg"
 							alt="Cross icon"
 							className="delete"
-							onClick={deleteHamster}
+							// onClick={() => deleteHamster(hamster.hamster.id)}
+							// onCLick={onClick}
 						></img>
 					</div>
-				</div>))
-				: "Preparing contestants"} 
+				</div>
 		</div>
 )
 }

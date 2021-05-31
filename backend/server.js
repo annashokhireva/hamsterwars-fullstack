@@ -5,8 +5,8 @@ const path = require('path');
 const hamsters = require('./routes/hamsters');
 const matches = require('./routes/matches.js');
 // const matchWinners = require('./routes/matchWinners.js');
-// const winners = require('./routes/winners.js');
-// const losers = require('./routes/losers.js');
+const winners = require('./routes/winners.js');
+const losers = require('./routes/losers.js');
 
 
 const PORT = process.env.PORT || 1337;
@@ -41,6 +41,10 @@ app.use('/api/hamsters', hamsters);
 app.use('/api/assets', express.static(__dirname + '/../public/img'));
 
 app.use('/api/matches', matches);
+
+app.use('/api/winners', winners);
+
+app.use('/api/losers', losers);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../build/index.html'))

@@ -11,13 +11,13 @@ import Battle from "./components/Battle";
 import Gallery from "./components/Gallery";
 import HomePage from "./components/HomePage";
 import HamsterForm from "./components/HamsterForm";
+import Statistics from "./components/Statistics";
 // import Modal from "./components/Modal";
 import "./sass/App.scss";
 
 //const hamstersData = [];
 
 function App() {
-
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [hamsters, setHamsters] = useState(null);
@@ -40,34 +40,37 @@ function App() {
 	}, []);
 
 	if (error) {
-		return <div className="error-message">
-					<img src="/img/500-error.png" alt="error 500"></img>
-				</div>;;
+		return (
+			<div className="error-message">
+				<img src="/img/500-error.png" alt="error 500"></img>
+			</div>
+		);
 	} else if (!isLoaded) {
-		return <div className="loader">
-					<div className="loading">
-						<p>loading hamsters</p>
-		   				<span></span>
-					</div>
-	 			</div>;
+		return (
+			<div className="loader">
+				<div className="loading">
+					<p>loading hamsters</p>
+					<span></span>
+				</div>
+			</div>
+		);
 	} else {
-		
 		return (
 			<Router>
 				<div className="App">
 					<header className="App-header">
 						<nav>
 							<NavLink exact={true} activeClassName="is-active" to="/">
-								{" "}
-								Home{" "}
+								Home
 							</NavLink>
 							<NavLink activeClassName="is-active" to="/battle">
-								{" "}
-								Compete{" "}
+								Compete
 							</NavLink>
 							<NavLink activeClassName="is-active" to="/gallery">
-								{" "}
-								Gallery{" "}
+								Gallery
+							</NavLink>
+							<NavLink activeClassName="is-active" to="/statistics">
+								Statistics
 							</NavLink>
 						</nav>
 						{/* <Modal /> */}
@@ -83,17 +86,21 @@ function App() {
 
 					<Switch>
 						<Route path="/form">
-							<HamsterForm/>
+							<HamsterForm />
+						</Route>
+
+						<Route path="/statistics">
+							<Statistics />
 						</Route>
 
 						<Route path="/battle">
-							<Battle hamsters={hamsters}/>
+							<Battle hamsters={hamsters} />
 						</Route>
 
 						<Route path="/gallery">
 							<Gallery hamsters={hamsters} />
 						</Route>
-						
+
 						<Route path="/">
 							<HomePage />
 						</Route>
