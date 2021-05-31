@@ -4,7 +4,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { fetchRandomHamster } from './utils/RandomHamster';
 import { fetchHamsterId } from './utils/HamsterId';
-import { handleWinner } from './utils/HandleWinner';
+import { updateWinsDefeats } from './utils/UpdateWinsDefeats';
+import { updateMatch } from './utils/UpdateMatch';
+
 
 const Contestants = styled.div`
 	width: 100%;
@@ -24,6 +26,8 @@ const Battle = () => {
 
 	const [hamster1, setHamster1] = useState({});
 	const [hamster2, setHamster2] = useState({});
+
+	const [style, setStyle] = useState({display: 'none'});
 	
 	const params = useParams();
 
@@ -49,6 +53,20 @@ const Battle = () => {
     }, [params])
 
 	let contestants = hamster1 && hamster2;
+
+	let winnerHamster;
+
+	async function handleWinner (winner, loser) {
+		console.log('winner: ' + winner.name, 'loser: ' + loser.name);
+	
+		updateWinsDefeats(winner, loser);
+		updateMatch(winner, loser);
+
+		winnerHamster = winner.name;
+
+		setStyle({display: 'block'});
+
+	}
 
 	return(
 		<div className="main-view">
@@ -80,7 +98,11 @@ const Battle = () => {
 					</div>
 		 		</div> 
 			}
-				
+			
+			<div style={style}>
+				{ winnerHamster }
+			</div>
+			
 			
 		</div>
 	)

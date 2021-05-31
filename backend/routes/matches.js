@@ -69,6 +69,8 @@ router.get('/:id', async (req, res) => {
 // POST /matches ( måste alla egenskaper vara med i if-satsen?)
 router.post('/', async (req, res) => {
 	const object = req.body;
+
+	console.log(object);
 	
 	if(!object.winnerId || !object.loserId || Object.keys(object).length === 0) {
 		res.sendStatus(400);

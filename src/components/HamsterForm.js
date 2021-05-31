@@ -88,10 +88,13 @@ const HamsterForm = () => {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				name: name,
-				age: age,
+				age: Number(age),
 				loves: loves,
 				favFood: favFood,
 				imgName: img,
+				wins: 0,
+				defeats: 0,
+				games: 0
 			}),
 		};
 

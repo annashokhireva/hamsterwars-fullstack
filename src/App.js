@@ -11,6 +11,7 @@ import Battle from "./components/Battle";
 import Gallery from "./components/Gallery";
 import HomePage from "./components/HomePage";
 import HamsterForm from "./components/HamsterForm";
+// import Modal from "./components/Modal";
 import "./sass/App.scss";
 
 //const hamstersData = [];
@@ -69,6 +70,7 @@ function App() {
 								Gallery{" "}
 							</NavLink>
 						</nav>
+						{/* <Modal /> */}
 					</header>
 				</div>
 
@@ -78,12 +80,6 @@ function App() {
 						alt="Space background"
 						className="bkg-img"
 					></img>
-
-					{/* <ul>
-						{hamsters.map((hamster) => (
-							<li key={hamster.id}>{hamster.name}</li>
-						))}
-					</ul> */}
 
 					<Switch>
 						<Route path="/form">

@@ -1,6 +1,12 @@
+// const db = firebase.firestore();
+
 export const updateWinsDefeats = async (winner, loser) => {
+
+	// const increment = firebase.firestore.FieldValue.increment(1);
+	// const incr = hamsterRef.update({ wins: increment });	
+
 	try {
-		const winnerRes = await fetch("/api/hamsters/" + winner.id + "/result", {
+		const winnerRes = await fetch("/api/hamsters/" + winner.id, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
@@ -8,7 +14,7 @@ export const updateWinsDefeats = async (winner, loser) => {
 			}),
 		});
 
-		const loserRes = await fetch("/api/hamsters/" + loser.id + "/result", {
+		const loserRes = await fetch("/api/hamsters/" + loser.id, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({

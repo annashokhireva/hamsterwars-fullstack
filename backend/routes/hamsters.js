@@ -85,7 +85,7 @@ router.get('/random', async (req, res) => {
 	if (!docRef.exists) {
 		res.status(404).send("Whops! Hamster not found.");
 		return;
-	};
+	}
 
 	try {
 		const data = docRef.data();
@@ -105,7 +105,7 @@ router.get('/random', async (req, res) => {
 router.post('/', async (req, res) => {
 	const object = req.body;
 
-	if(!objectEvaluator(object) || Object.keys(object).length === 0) {
+	if(!isValidHamsterObj(object) || Object.keys(object).length === 0) {
 		res.sendStatus(400);
 		return;
 	}
@@ -127,21 +127,22 @@ router.post('/', async (req, res) => {
 });
 
 
-function objectEvaluator(testItem) {
+function isValidHamsterObj(testItem) {
+
 
 	if( testItem && ['name', 'age', 'favFood', 'loves', 'imgName', 'wins', 'defeats', 'games'].every(t => testItem.hasOwnProperty(t)) ) {
-
+		
 		if (testItem.age < 0 || !Number.isInteger(testItem.age)) return false;
-
+		
 		if (!Number.isInteger(testItem.wins)) return false;
-
+		
 		if (!Number.isInteger(testItem.defeats)) return false;
-
+		
 		if (!Number.isInteger(testItem.games)) return false;
-
+		
 		return true;
 	}
-
+	console.log('7');
 	return false;
 };
 
@@ -150,6 +151,8 @@ function objectEvaluator(testItem) {
 router.put('/:id', async (req, res) => {
 	const id = req.params.id;
 	const object = req.body;
+
+	console.log('id: ', id, 'obj: ', object.wins, object.defeats);
 
 	if(!object || !id) {
 		res.sendStatus(400);
@@ -173,6 +176,48 @@ router.put('/:id', async (req, res) => {
 		res.status(404).send("Whops! Hamster not found.");
 		return;
 	}
+	// else {
+	// 	let hamster = hamsterRef.data();
+	// 	console.log(hamster);
+	// 	const increment = firebase.firestore.FieldValue.increment(1);
+
+	// 	if(object.wins !== (1 || 0) && object.defeats !== (1 || 0)){
+	// 		res.status(400).send('Wins value must be 1 or 0.');
+	// 	}
+	// 	else {
+	
+	// 		if(object.wins !== object.defeats) {
+	// 			let wins = object.wins
+	// 			let defeats = object.defeats;
+	
+	// 			hamster.wins += wins ? wins : 0;
+	// 			hamster.defeats += defeats ? defeats : 0;
+	// 			hamster.games += 1;
+				
+	// 			try {
+	// 				await docRef.set(object, { merge: true });
+			
+	// 				if(Object.keys(object).length === 0) {
+	// 					res.sendStatus(400);
+	// 					return;
+	// 				}
+			
+	// 				res.sendStatus(200);
+	// 			}
+			
+	// 			catch(error) {
+	// 				console.log(error.message);
+	// 				res.status(500).send(error.message);
+	// 			}
+	// 		}
+	// 		else {   
+	// 			res.status(400).send('Values cannot be equal')
+	// 		}
+	// 	}
+	// }
+	
+		
+	
 
 	try {
 		await docRef.set(object, { merge: true });
