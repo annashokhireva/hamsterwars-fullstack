@@ -12,6 +12,7 @@ import Gallery from "./components/Gallery";
 import HomePage from "./components/HomePage";
 import HamsterForm from "./components/HamsterForm";
 import Statistics from "./components/Statistics";
+import History from "./components/History";
 // import Modal from "./components/Modal";
 import "./sass/App.scss";
 
@@ -72,6 +73,9 @@ function App() {
 							<NavLink activeClassName="is-active" to="/statistics">
 								Statistics
 							</NavLink>
+							<NavLink activeClassName="is-active" to="/history">
+								History
+							</NavLink>
 						</nav>
 						{/* <Modal /> */}
 					</header>
@@ -87,6 +91,10 @@ function App() {
 					<Switch>
 						<Route path="/form">
 							<HamsterForm />
+						</Route>
+
+						<Route path="/history">
+							<History />
 						</Route>
 
 						<Route path="/statistics">

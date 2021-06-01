@@ -6,7 +6,7 @@ const Statistics = () => {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [winners, setWinners] = useState(null);
 	const [losers, setLosers] = useState(null);
-
+	
 	useEffect(() => {
 		function getWinners() {
 			fetch("/api/winners", { method: "GET" })
@@ -73,11 +73,11 @@ const Statistics = () => {
 								// key={winner.id}>
 								// 	<div> {winner.name} </div>
 								// </div>
-								<Hamster hamster={winner} />
+								<Hamster hamster={winner} key={i}/>
 							))
 						) : (
-							<div class="loader">
-								<div class="loading">
+							<div className="loader">
+								<div className="loading">
 									<p>loading winners</p>
 									<span></span>
 								</div>
@@ -95,11 +95,11 @@ const Statistics = () => {
 								// key={winner.id}>
 								// 	<div> {winner.name} </div>
 								// </div>
-								<Hamster hamster={loser} />
+								<Hamster hamster={loser} key={i}/>
 							))
 						) : (
-							<div class="loader">
-								<div class="loading">
+							<div className="loader">
+								<div className="loading">
 									<p>loading losers</p>
 									<span></span>
 								</div>

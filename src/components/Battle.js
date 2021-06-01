@@ -91,8 +91,8 @@ const Battle = () => {
 					></img>
 					
 				</Contestants>
-			) : <div class="loader">
-					<div class="loading">
+			) : <div className="loader">
+					<div className="loading">
 						<p>loading contestants</p>
 						<span></span>
 					</div>

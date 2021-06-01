@@ -1,6 +1,6 @@
 // import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Hamster from "./Hamster";
 
 // export const GalleryGrid = styled.div`
@@ -26,24 +26,6 @@ import Hamster from "./Hamster";
 
 const Gallery = (props) => {
 
-	async function deleteHamster(id) {
-		await fetch("/api/hamsters/" + id, { method: "DELETE" })
-			.then((res) => {
-				return res.json();
-			})
-			.then(
-				(result) => {
-					const hamstersArr = result;
-					hamstersArr.filter((item) => item.id !== id);
-				},
-
-				(error) => {
-					console.log("Delete failed, ", error);
-					return null;
-				}
-			);
-	}
-
 	return (
 		<div className="main-view">
 			<h1> Galleriet </h1>
@@ -62,7 +44,7 @@ const Gallery = (props) => {
 				{/* <Hamster props={props}/> */}
 				{props.hamsters ? (
 					props.hamsters.map((hamster, i) => (
-						<Hamster hamster={hamster} onClick={() => deleteHamster(hamster.id)} key={hamster.id}/>
+						<Hamster hamster={hamster} key={hamster.id}/>
 						// <div
 						// 	className="hamster-box"
 						// 	key={hamster.id}
@@ -99,8 +81,8 @@ const Gallery = (props) => {
 						
 					))
 				) : (
-					<div class="loader">
-						<div class="loading">
+					<div className="loader">
+						<div className="loading">
 							<p>loading hamsters</p>
 							<span></span>
 						</div>

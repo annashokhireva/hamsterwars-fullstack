@@ -1,16 +1,38 @@
 // import { render } from "@testing-library/react";
-import { useState, useEffect } from "react";
+// import { response } from "express";
+import { useState } from "react";
 
 const Hamster = (hamster) => {
 
-	// function deleteHamster(id){
-	// 	// 	const index = hamsters.indexOf(hamster);
-	// 	// 				hamsters.splice(index, 1);
+	const [visible, setVisible] = useState(false);
+	let gallery = true;
 
-	// 	console.log(id);
+	async function deleteHamster(id) {
 
-	// }
+		await fetch("/api/hamsters/" + id, { method: "DELETE", 
+			headers : { 
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		   }})
 
+			.then((res) => {
+				console.log(JSON.stringify(res))
+				// return res.json();
+			})
+			
+			// .then(
+			// 	(result) => {
+			// 		const hamstersArr = result;
+			// 		hamstersArr.filter((item) => item.id !== id);
+			// 		console.log(hamstersArr);
+			// 	},
+
+			// 	(error) => {
+			// 		console.log("Delete failed, ", error);
+			// 		return null;
+			// 	}
+			// );
+	}
 	// useEffect(() => {
 	// 	setHamster(props.hamsters);
 	// }, [props.hamster])
@@ -23,15 +45,8 @@ const Hamster = (hamster) => {
 				<div
 					className="hamster-box"
 					key={hamster.hamster.id}
-					// onMouseEnter={e => {
-					// 	setStyle({display: 'block'});
-					// }}
-					// onMouseLeave={e => {
-					// 	setStyle({display: 'none'})
-					// }}
-					// onClick={(e) => {
-					// 	this.showModal();
-					// }}
+					onMouseEnter={() => {setVisible(true)}}
+					onMouseLeave={() => {setVisible(false)}}
 				>
 	
 					<img
@@ -42,13 +57,34 @@ const Hamster = (hamster) => {
 
 					<div className="hamster-info">
 						<h2>{hamster.hamster.name} </h2>
-						<img
+						{/* <img
 							src="/icons/delete.svg"
 							alt="Cross icon"
 							className="delete"
-							// onClick={() => deleteHamster(hamster.hamster.id)}
+							onClick={() => deleteHamster(hamster.hamster.id)}
 							// onCLick={onClick}
-						></img>
+						></img> */}
+						{visible ? (
+							<div className="extra-info">
+								<p>Age:{hamster.hamster.age}</p>
+								<p>Favourite food: {hamster.hamster.favFood} </p>
+								<p>Loves: {hamster.hamster.loves}</p>
+								<p>Battles: {hamster.hamster.games} </p>
+								<p>Wins: {hamster.hamster.wins}</p>
+								<p>Defeats: {hamster.hamster.defeats} </p>
+								{gallery ? (
+									<img
+										src="/icons/delete.svg"
+										alt="Cross icon"
+										className="delete"
+										onClick={() => deleteHamster(hamster.hamster.id)}
+										//filter (ändra function) (listor)
+									></img>
+								):
+								null}
+							</div>
+						):
+						null}
 					</div>
 				</div>
 		</div>
