@@ -44,7 +44,7 @@ const Gallery = (props) => {
 				{/* <Hamster props={props}/> */}
 				{props.hamsters ? (
 					props.hamsters.map((hamster, i) => (
-						<Hamster hamster={hamster} key={hamster.id}/>
+						<Hamster hamster={hamster} showDelete={true} key={hamster.id}/>
 						// <div
 						// 	className="hamster-box"
 						// 	key={hamster.id}

@@ -94,7 +94,7 @@ function App() {
 						</Route>
 
 						<Route path="/history">
-							<History />
+							<History hamsters={hamsters}/>
 						</Route>
 
 						<Route path="/statistics">

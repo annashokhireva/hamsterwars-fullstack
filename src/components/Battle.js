@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+// import { getHamsters } from './utils/GetHamsters';
 import { fetchRandomHamster } from './utils/RandomHamster';
 import { fetchHamsterId } from './utils/HamsterId';
 import { updateWinsDefeats } from './utils/UpdateWinsDefeats';
@@ -27,34 +27,36 @@ const Battle = () => {
 	const [hamster1, setHamster1] = useState({});
 	const [hamster2, setHamster2] = useState({});
 
-	const [style, setStyle] = useState({display: 'none'});
+	const [showInfo, setShowInfo] = useState(false);
 	
 	const params = useParams();
 
-	useEffect(() => {
-		async function getHamsters() {
+	async function getHamsters() {
 
-			if(params.id1 && params.id2) {
-				
-				fetchHamsterId(setHamster1, params.id1);
-				fetchHamsterId(setHamster2, params.id2);
+		if(params.id1 && params.id2) {
+			
+			fetchHamsterId(setHamster1, params.id1);
+			fetchHamsterId(setHamster2, params.id2);
 
-			} else {
-				
-				await fetchRandomHamster(setHamster1);
-				await fetchRandomHamster(setHamster2, hamster1.id);
-
-			}
+		} else {
+			
+			await fetchRandomHamster(setHamster1);
+			await fetchRandomHamster(setHamster2, hamster1.id);
 
 		}
-		
+
+	};
+	useEffect(() => {
+
 		getHamsters();
 
     }, [params])
 
 	let contestants = hamster1 && hamster2;
 
-	let winnerHamster;
+	// let winnerHamster;
+
+	
 
 	async function handleWinner (winner, loser) {
 		console.log('winner: ' + winner.name, 'loser: ' + loser.name);
@@ -62,9 +64,9 @@ const Battle = () => {
 		updateWinsDefeats(winner, loser);
 		updateMatch(winner, loser);
 
-		winnerHamster = winner.name;
+		// winnerHamster = winner.name;
 
-		setStyle({display: 'block'});
+		setShowInfo(true);
 
 	}
 
@@ -74,21 +76,42 @@ const Battle = () => {
 	
 			{contestants ? (
 				<Contestants>
+					<div>
+						<img
+							src={`/api/assets/${hamster1.imgName}`}
+							alt={`Hamster  ${hamster1.id}`}
+							className="hamster-box-battle"
+							onClick={() => (handleWinner(hamster1, hamster2))}
+						></img>
+						{ showInfo ? (
+							<div className='game-info'>
+								<h3>{hamster1.name}</h3>
+								<p><b>Won:</b> { hamster1.wins } times</p>
+								<p><b>Lost:</b> { hamster1.defeats } times</p>
+								<p><b>Total battles:</b> { hamster1. games }</p>
+							</div>
+						):
+						null }
+					</div>
 					
-					<img
-						src={`/api/assets/${hamster1.imgName}`}
-						alt={`Hamster  ${hamster1.id}`}
-						className="hamster-box-battle"
-						onClick={() => (handleWinner(hamster1, hamster2))}
-					></img>
 			
-				
-					<img
-						src={`/api/assets/${hamster2.imgName}`}
-						alt={`Hamster  ${hamster2.id}`}
-						className="hamster-box-battle"
-						onClick={() => (handleWinner(hamster2, hamster1))}
-					></img>
+					<div>
+						<img
+							src={`/api/assets/${hamster2.imgName}`}
+							alt={`Hamster  ${hamster2.id}`}
+							className="hamster-box-battle"
+							onClick={() => (handleWinner(hamster2, hamster1))}
+						></img>
+						{ showInfo ? (
+							<div className='game-info'>
+								<h3>{hamster2.name}</h3>
+								<p><b>Won:</b> { hamster2.wins } times</p>
+								<p><b>Lost:</b> { hamster2.defeats } times</p>
+								<p><b>Total battles:</b> { hamster2. games }</p>
+							</div>
+						):
+						null }
+					</div>
 					
 				</Contestants>
 			) : <div className="loader">
@@ -99,9 +122,11 @@ const Battle = () => {
 		 		</div> 
 			}
 			
-			<div style={style}>
-				{ winnerHamster }
-			</div>
+			{ showInfo ? (
+				<button onClick={() => getHamsters()}>Restart</button>
+			):
+			null
+			}
 			
 			
 		</div>

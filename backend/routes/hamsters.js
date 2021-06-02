@@ -160,8 +160,8 @@ router.put('/:id', async (req, res) => {
 	}
 
 	const docRef = db.collection('hamsters').doc(id);
-	const increment = firebase.firestore.FieldValue.increment(1);
-	const decrement = firebase.firestore.FieldValue.decrement(-1);
+	// const increment = firebase.firestore.FieldValue.increment(1);
+	// const decrement = firebase.firestore.FieldValue.decrement(-1);
 	let hamsterRef;
 
 	try {
@@ -179,69 +179,69 @@ router.put('/:id', async (req, res) => {
 		return;
 	}
 	
-	else {
-		let hamster = hamsterRef.data();
-		console.log(hamster);
-		const increment = firebase.firestore.FieldValue.increment(1);
+	// else {
+	// 	let hamster = hamsterRef.data();
+	// 	console.log(hamster);
+	// 	const increment = firebase.firestore.FieldValue.increment(1);
 
-		if(object.wins !== (1 || 0) && object.defeats !== (1 || 0)){
-			res.status(400).send('Wins value must be 1 or 0.');
-		}
-		else {
+	// 	if(object.wins !== (1 || 0) && object.defeats !== (1 || 0)){
+	// 		res.status(400).send('Wins value must be 1 or 0.');
+	// 	}
+	// 	else {
 	
-			if(object.wins !== object.defeats) {
-				let wins = object.wins
-				let defeats = object.defeats;
+	// 		if(object.wins !== object.defeats) {
+	// 			let wins = object.wins
+	// 			let defeats = object.defeats;
 	
-				if(hamster.wins) {
-					docRef.update({ wins: increment });
-				}
-				if(hamster.defeats){
-					docRef.update({ defeats: increment });
-				}
+	// 			if(hamster.wins) {
+	// 				docRef.update({ wins: increment });
+	// 			}
+	// 			if(hamster.defeats){
+	// 				docRef.update({ defeats: increment });
+	// 			}
 				
-				docRef.update({ games: increment });
+	// 			docRef.update({ games: increment });
 				
-				try {
-					await docRef.set(object, { merge: true });
+	// 			try {
+	// 				await docRef.set(object, { merge: true });
 			
-					if(Object.keys(object).length === 0) {
-						res.sendStatus(400);
-						return;
-					}
+	// 				if(Object.keys(object).length === 0) {
+	// 					res.sendStatus(400);
+	// 					return;
+	// 				}
 			
-					res.sendStatus(200);
-				}
+	// 				res.sendStatus(200);
+	// 			}
 			
-				catch(error) {
-					console.log(error.message);
-					res.status(500).send(error.message);
-				}
-			}
-			else {   
-				res.status(400).send('Values cannot be equal')
-			}
-		}
-	}
+	// 			catch(error) {
+	// 				console.log(error.message);
+	// 				res.status(500).send(error.message);
+	// 			}
+	// 		}
+	// 		else {   
+	// 			res.status(400).send('Values cannot be equal')
+	// 		}
+	// 	}
+	// }
 	
 		
 	
 
-	// try {
-	// 	await docRef.set(object, { merge: true });
+	try {
+		await docRef.set(object, { merge: true });
 
-	// 	if(Object.keys(object).length === 0) {
-	// 		res.sendStatus(400);
-	// 		return;
-	// 	}
+		if(Object.keys(object).length === 0) {
+			res.sendStatus(400);
+			return;
+		}
 
-	// 	res.sendStatus(200);
-	// }
+		res.sendStatus(200);
+	}
 
-	// catch(error) {
-	// 	console.log(error.message);
-	// 	res.status(500).send(error.message);
-	// }
+	catch(error) {
+		console.log(error.message);
+		res.status(500).send(error.message);
+	}
 });
 
 
