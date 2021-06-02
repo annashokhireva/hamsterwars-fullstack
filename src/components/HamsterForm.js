@@ -197,7 +197,3 @@ const HamsterForm = () => {
 };
 
 export default HamsterForm;
-
-
-// röda prick som stannar kvar
-// kod 400

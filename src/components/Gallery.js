@@ -1,7 +1,8 @@
 // import styled from "styled-components";
 import { Link } from "react-router-dom";
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Hamster from "./Hamster";
+
 
 // export const GalleryGrid = styled.div`
 // 	width: 100%;
@@ -24,13 +25,51 @@ import Hamster from "./Hamster";
 // `;
 
 
-const Gallery = (props) => {
+const Gallery = ({hamsters}) => {
+
+	// console.log(hamsters);
+	const [galleryHamsters, setGalleryHamsters] = useState({hamsters});
+	console.log(galleryHamsters);
+
+	function handleRemove(id) {
+		const newList = galleryHamsters.filter((item) => item.id !== id);
+ 
+		console.log(newList);
+    	// setGalleryHamsters(newList);
+	  }
+
+	// function afterDelete(hamsterId){
+	// 	const currentHamsters = hamsters;
+	// 	setGalleryHamsters (
+	// 		currentHamsters.filter(hamster => hamster.id !== hamsterId)
+	// 	);
+	// 	console.log(galleryHamsters);
+	// }
+
+	// function updateHamsters(){
+
+	// 	fetch("/api/hamsters", { method: "GET" })
+	// 		.then((res) => res.json())
+	// 		.then(
+	// 			(result) => {
+					
+	// 				hamsters = result;
+	// 			},
+
+	// 			(error) => {
+					
+	// 				console.log(error);
+	// 			}
+	// 		);
+		
+
+	// }
+	
 
 	return (
 		<div className="main-view">
-			<h1> Galleriet </h1>
-			<div className="gallery-grid">
-				<Link to="/form" className="add-hamster">
+			<div className="gallery-view">
+				<Link to="/form" className="hamster-btn">
 					<img
 						src="/icons/hamster-logo.svg"
 						alt="Hamster icon"
@@ -42,9 +81,9 @@ const Gallery = (props) => {
 				</Link>
 
 				{/* <Hamster props={props}/> */}
-				{props.hamsters ? (
-					props.hamsters.map((hamster, i) => (
-						<Hamster hamster={hamster} showDelete={true} key={hamster.id}/>
+				{hamsters ? (
+					hamsters.map((hamster, i) => (
+						<Hamster hamster={hamster} showDelete={true} key={hamster.id} onClick={handleRemove(hamster.id)}/>
 						// <div
 						// 	className="hamster-box"
 						// 	key={hamster.id}

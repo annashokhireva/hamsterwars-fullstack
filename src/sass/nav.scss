@@ -1,17 +1,27 @@
 nav {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-evenly;
 	align-items: center;
 	padding: 1em;
 	background-color: rgb(0, 0, 0);
-	height: 10vh;
 	width: 100vw;
+
+	@media only screen and (min-width: 600px) {
+		height: 10vh;
+		width: 100vw;
+	}
 
 	a {
 		color: white;
 		text-decoration: none;
 		font-weight: 600;
 		font-size: 1.5em;
+		margin: $space;
+
+		@media only screen and (min-width: 600px) {
+			margin: 0 $space;
+		}
 	
 		&:hover {
 			color: $starwars_yellow;

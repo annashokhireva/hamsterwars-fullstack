@@ -13,8 +13,8 @@ import HomePage from "./components/HomePage";
 import HamsterForm from "./components/HamsterForm";
 import Statistics from "./components/Statistics";
 import History from "./components/History";
-// import Modal from "./components/Modal";
 import "./sass/App.scss";
+// import Hamster from "./components/Hamster";
 
 //const hamstersData = [];
 
@@ -39,6 +39,16 @@ function App() {
 				}
 			);
 	}, []);
+
+	// function afterDelete(hamsterId){
+	// 	const currentHamsters = hamsters;
+	// 	setHamsters (
+	// 		currentHamsters.filter(hamster => hamster.id !== hamsterId)
+	// 	);
+	// }
+	// function afterDelete() {
+	// 	console.log('it is working!!!!');
+	// }
 
 	if (error) {
 		return (
@@ -106,6 +116,7 @@ function App() {
 						</Route>
 
 						<Route path="/gallery">
+							{/* <Gallery hamsters={hamsters} render={() => <Hamster hamsters={hamsters} action={() => afterDelete()}/>}/> */}
 							<Gallery hamsters={hamsters} />
 						</Route>
 

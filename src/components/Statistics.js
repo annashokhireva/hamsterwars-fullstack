@@ -66,7 +66,7 @@ const Statistics = () => {
 			<div className="main-view">
 				<div className="list-of-5">
 					<h2>Top 5 winners</h2>
-					<div className="gallery-grid">
+					<div className="stat-view">
 						{winners ? (
 							winners.map((winner, i) => (
 								// <div className="hamster-box"
@@ -88,7 +88,7 @@ const Statistics = () => {
 
 				<div className="list-of-5">
 					<h2>Top 5 losers</h2>
-					<div className="gallery-grid">
+					<div className="stat-view">
 						{losers ? (
 							losers.map((loser, i) => (
 								// <div className="hamster-box"

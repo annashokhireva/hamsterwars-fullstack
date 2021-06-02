@@ -5,7 +5,8 @@
 @import './form.scss';
 @import './error.scss';
 @import './loader.scss';
-@import './game-info.scss';
+@import './start-page.scss';
+@import './battle.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
@@ -45,40 +46,18 @@ main {
 	height: 100%;
 }
 
-// .header-img {
-// 	width: 20em;
-// 	margin: 4em 0;
-// }
 
-
-// @media only screen and (min-width: 600px) {
-// 	.header-img {
-// 		width: 30em;
-// 	}
-// }
-
-@media only screen and (min-width: 768px) {
-	main {
-		// margin: 0 5em;
-	}
+@media only screen and (min-width: 600px) {
 
 	h2 {
 		font-size: 32px;
+		background-color: transparentize(black, 0.4);
+		padding: $space/2 $space*2;
+		border-radius: $corners;
 	}
 
 	h3 {
 		font-size: 20px;
 	}
 
-	.description {
-		margin: 0.5em 5em;
-		text-align: center;
-		font-size: 18px;
-		background-color: transparentize(black, 0.5);
-		padding: 0.5em;
-	}
-
-	// .header-img {
-	// 	width: 40em;
-	// }
 }

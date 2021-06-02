@@ -2,11 +2,15 @@
 // import { response } from "express";
 import { useState } from "react";
 
+
 const Hamster = ({hamster, showDelete}) => {
 
 	const [visible, setVisible] = useState(false);
 
+
 	async function deleteHamster(id) {
+
+		console.log(id);
 
 		await fetch("/api/hamsters/" + id, { method: "DELETE", 
 			headers : { 
@@ -19,18 +23,7 @@ const Hamster = ({hamster, showDelete}) => {
 				// return res.json();
 			})
 			
-			// .then(
-			// 	(result) => {
-			// 		const hamstersArr = result;
-			// 		hamstersArr.filter((item) => item.id !== id);
-			// 		console.log(hamstersArr);
-			// 	},
-
-			// 	(error) => {
-			// 		console.log("Delete failed, ", error);
-			// 		return null;
-			// 	}
-			// );
+			
 	}
 	// useEffect(() => {
 	// 	setHamster(props.hamsters);
@@ -47,44 +40,46 @@ const Hamster = ({hamster, showDelete}) => {
 					onMouseEnter={() => {setVisible(true)}}
 					onMouseLeave={() => {setVisible(false)}}
 				>
-	
-					<img
-						src={`/api/assets/${hamster.imgName}`}
-						alt={`Hamster  ${hamster.id}`}
-						className="hamster-img"
-					></img>
-
-					<div className="hamster-info">
-						<h2>{hamster.name} </h2>
-						{/* <img
-							src="/icons/delete.svg"
-							alt="Cross icon"
-							className="delete"
-							onClick={() => deleteHamster(props.hamster.id)}
-							// onCLick={onClick}
-						></img> */}
-						{visible ? (
-							<div className="extra-info">
-								<p>Age:{hamster.age}</p>
-								<p>Favourite food: {hamster.favFood} </p>
-								<p>Loves: {hamster.loves}</p>
-								<p>Battles: {hamster.games} </p>
-								<p>Wins: {hamster.wins}</p>
-								<p>Defeats: {hamster.defeats} </p>
-								{showDelete ? (
-									<img
-										src="/icons/delete.svg"
-										alt="Cross icon"
-										className="delete"
-										onClick={() => deleteHamster(hamster.id)}
-										//filter (ändra function) (listor)
-									></img>
-								):
-								null}
-							</div>
-						):
-						null}
+					<div>
+						<div className="hamster-img">
+							<img src={`/api/assets/${hamster.imgName}`} alt={`Hamster + ${hamster.id}`}></img>
+						</div>
+					
+						<div className="hamster-info">
+							<h3>{hamster.name} </h3>
+							{/* <img
+								src="/icons/delete.svg"
+								alt="Cross icon"
+								className="delete"
+								onClick={() => deleteHamster(props.hamster.id)}
+								// onCLick={onClick}
+							></img> */}
+						</div>
 					</div>
+
+					{visible ? (
+						<div className="extra-info">
+							<p><b>Age: </b>{hamster.age}</p>
+							<p><b>Favourite food: </b> {hamster.favFood} </p>
+							<p><b>Loves: </b>{hamster.loves}</p>
+							<p><b>Battles: </b>{hamster.games} </p>
+							<p><b>Wins: </b>{hamster.wins}</p>
+							<p><b>Defeats: </b>{hamster.defeats} </p>
+							{showDelete ? (
+								<img
+									src="/icons/delete.svg"
+									alt="Cross icon"
+									className="delete"
+									// onClick={() => deleteHamster(hamster.id)}
+									onClick={() => hamster.action}
+									//filter (ändra function) (listor)
+								></img>
+							):
+							null}
+						</div>
+					):
+					null}
+					
 				</div>
 		</div>
 )

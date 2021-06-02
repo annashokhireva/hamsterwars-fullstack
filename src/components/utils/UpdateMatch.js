@@ -1,9 +1,9 @@
 export const updateMatch = async (winner, loser) => {
 	const requestOptions = {
 		method: "POST",
-		headers: { 
+		headers: {
 			"Content-Type": "application/json",
-			'Accept': 'application/json' 
+			Accept: "application/json",
 		},
 		body: JSON.stringify({
 			winnerId: winner.id,
@@ -16,8 +16,8 @@ export const updateMatch = async (winner, loser) => {
 		const data = await response.json();
 		console.log("match", data);
 		return data;
-    } 
-    catch (e) {
+	} 
+	catch (e) {
 		console.log("Upload failed, ", e);
 		return null;
 	}

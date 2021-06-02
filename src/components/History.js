@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { fetchHamsterId } from './utils/HamsterId';
+import { fetchHamsterId } from './utils/hamsterId';
 import { useParams } from 'react-router-dom';
 
 
-const History = (props) => {
+const History = ({hamsters}) => {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [matches, setMatches] = useState(null);
@@ -70,7 +70,6 @@ const History = (props) => {
 
 	// let test = matches.map((match) => {match.winnerId});
 
-	let hamsters = props.hamsters;
 
 	console.log(hamsters);
 

@@ -1,11 +1,4 @@
-// const db = firebase.firestore();
-
 export const updateWinsDefeats = async (winner, loser) => {
-
-	// const increment = firebase.firestore.FieldValue.increment(1);
-	// const incr = hamsterRef.update({ wins: increment });	
-	// const hamstersRef = db.collection('hamsters').doc(id);
-
 
 	try {
 		await fetch("/api/hamsters/" + winner.id, {
@@ -20,7 +13,6 @@ export const updateWinsDefeats = async (winner, loser) => {
 			}),
 		});
 
-		// hamstersRef.update({ wins: incr });
 
 		await fetch("/api/hamsters/" + loser.id, {
 			method: "PUT",
@@ -31,12 +23,6 @@ export const updateWinsDefeats = async (winner, loser) => {
 			}),
 		});
 
-		// hamstersRef.update({ defeats: decrement });
-
-		// const winnerData = await winnerRes.json();
-		// const loserData = await loserRes.json();
-
-		// return console.log("Winner: ", winnerData, "Loser: ", loserData);
 	} 
 	catch (error) {
 		console.log("Update failed, ", error);

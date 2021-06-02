@@ -33,10 +33,12 @@
 
 .delete {
 	width: 30px;
-	margin: 0 1em;
+	margin: 0 auto;
+	float: right;
 
 	&:hover {
 		cursor: pointer;
+		zoom: 1.1;
 	}
 	
 }

@@ -5,10 +5,10 @@
 	gap: 1em;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
-	width: 100%;
 	overflow: scroll;
+	width: 100vw;
 
+	
 	h2 {
 		text-align: center;
 		margin: 1em 0 0;
@@ -20,8 +20,13 @@
 		flex-direction: column;
 		margin-bottom: 1em;
 		position: relative;
-		width: 500px;
+		width: 20em;
 		color: $starwars_yellow;
+
+		@media only screen and (min-width: 600px) {
+			width: 35em;
+		}
+	
 
 		label {
 			font-size: 24px;
