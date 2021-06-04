@@ -1,6 +1,6 @@
 # G och VG krav slutförda.
 https://github.com/annashokhireva/hamsterwars-fullstack
-https://hamsterwars-fullstack-app.herokuapp.com/
+https://hamsterwars-fullstack-iths.herokuapp.com/
 
 Har använt SASS och React styled components. Appen är responsiv.
 
