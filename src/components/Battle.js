@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { fetchRandomHamster } from './utils/randomHamster.js';
-import { fetchHamsterId } from './utils/hamsterId.js';
-import { updateWinsDefeats } from './utils/updateWinsDefeats.js';
-import { updateMatch } from './utils/updateMatch.js';
+import { fetchRandomHamster } from '../utils/randomHamster.js';
+import { fetchHamsterId } from '../utils/hamsterId.js';
+import { updateWinsDefeats } from '../utils/updateWinsDefeats.js';
+import { updateMatch } from '../utils/updateMatch.js';
 
 const Contestants = styled.div`
 	width: 100%;
