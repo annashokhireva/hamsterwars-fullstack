@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const hamsters = require('./routes/hamsters');
 const matches = require('./routes/matches.js');
-// const matchWinners = require('./routes/matchWinners.js');
+const matchWinners = require('./routes/matchWinners.js');
 const winners = require('./routes/winners.js');
 const losers = require('./routes/losers.js');
 
@@ -28,14 +28,6 @@ app.use(express.static(imgFolder));
 
 //Routes
 
-// app.get('/', (req, res) => {
-// 	res.send('Hello from server')
-// });
-
-// app.get('/api/hamsters', (req, res) => {
-// 	res.send();
-// })
-
 app.use('/api/hamsters', hamsters);
 
 app.use('/api/assets', express.static(__dirname + '/../public/img'));
@@ -46,18 +38,11 @@ app.use('/api/winners', winners);
 
 app.use('/api/losers', losers);
 
+app.use('/api/matchWinners', matchWinners);
+
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../build/index.html'))
 });
-
-
-//REST API 
-
-// app.use('/hamsters', hamsters);
-// app.use('/matches', matches);
-// app.use('/matchWinners', matchWinners);
-// app.use('/winners', winners);
-// app.use('/losers', losers);
 
 // Start server
 

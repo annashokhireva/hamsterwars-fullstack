@@ -11,7 +11,7 @@ const Gallery = ({ hamsters }) => {
 		}
 	}, [hamsters]);
 
-	function deleteHamster(hamster) {
+	function afterDeleteHamster(hamster) {
 		fetch("/api/hamsters", { method: "GET" })
 			.then((res) => res.json())
 			.then(
@@ -43,10 +43,11 @@ const Gallery = ({ hamsters }) => {
 				{galleryHamsters ? (
 					galleryHamsters.map((hamster) => (
 						<Hamster
+							hamsters={hamsters}
 							hamster={hamster}
 							showDelete={true}
 							key={hamster.id}
-							onDelete={() => deleteHamster(hamster)}
+							onDelete={() => afterDeleteHamster(hamster)}
 						/>
 					))
 				) : (

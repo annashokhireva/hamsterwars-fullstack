@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
-// const HomeMain = styled.div`
-// 	overflow: scroll;
-// 	width: 100%;
-// 	display: flex;
-// 	flex-direction: column;
-// 	justify-content: space-between;
-// 	align-items: center;
-// `
 const HeaderImg = styled.img`
 	width: 20em;
 	margin-top: 4em;

@@ -34,8 +34,7 @@ const History = ({ hamsters }) => {
 				Accept: "application/json",
 			},
 		}).then((res) => {
-			// console.log(JSON.stringify(res))
-			// return res.json();
+			console.log(JSON.stringify(res))
 			getMatches();
 		});
 	}

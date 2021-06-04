@@ -10,7 +10,7 @@
 
 		width: 90vw;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+		grid-template-columns: min-content auto;
 		grid-auto-rows: auto;
 		row-gap: 1.5em;
 		column-gap: 1.5em;
@@ -53,6 +53,13 @@
 		flex-direction: row;
 		width: auto;
 	}
+}
+
+.hamster-card {
+	height: 384px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .hamster-btn {
@@ -111,21 +118,58 @@
 	}
 }
 
-.extra-info {
+.hidden-info {
+	height: 384px;
+	display: flex;
+	margin: 0;
+}
+
+.extra-info, .defeated-hamsters {
 	width: 100%;
+	height: 100%;
 	background-color: white;
 	border-radius: 0 0 $corners $corners;
 	margin-top: -0.5em;
 	padding: $space;
+
+	.show-more {
+		display: flex;
+		justify-content: center;
+		cursor: pointer;
+	}
 
 	@media only screen and (min-width: 600px) {
 		width: 10em;
 		border-radius: 0 $corners $corners 0;
 		margin-top: 0;
 		margin-left: -0.5em;
-	
+
+		p {
+			margin: $space / 1.5;
+		}
+
 		.delete {
-			margin-top: 3em;
+			margin-top: 2em;
+		}
+	}
+}
+
+.defeated-hamsters {
+	background-color: $starwars_yellow;
+	overflow: scroll;
+
+	.losers {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: scroll;
+
+		li::before {
+			content: "\1F439";
+		}
+		li{
+			margin: $space /1.5 0;
+			list-style: none;
 		}
 	}
 }

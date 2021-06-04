@@ -1,9 +1,14 @@
 .battle-view {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 	height: 100%;
+	padding: $space;
+}
+
+.selected {
+	border: 3px solid $starwars_yellow;
 }
 
 .history-view {
@@ -42,6 +47,7 @@
 
 	&:hover {
 		border: 2px solid yellow;
+		cursor: pointer;
 	}
 
 	@media only screen and (min-width: 600px) {
@@ -68,5 +74,36 @@
 
 	p {
 		margin-bottom: 0;
+	}
+}
+
+.winner,
+.loser {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin: $space;
+
+	h3 {
+		margin-bottom: $space;
+		font-size: 32px;
+	}
+}
+
+.winner{
+	h3 {
+		font-weight: 800;
+	}
+}
+
+.loser{
+
+	h3 {
+		font-weight: 300;
+	}
+
+	img {
+		width: 5em;
 	}
 }

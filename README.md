@@ -2,9 +2,7 @@
 https://github.com/annashokhireva/hamsterwars-fullstack
 https://hamsterwars-fullstack-app.herokuapp.com/
 
-Har amvänt SASS och  React styled components.
-
-Jag vill ha återkoppling på min lösning på galleriet, då gick det inte att avnända filter eller splice metoder (försökt även med  functional setState method). 
+Har använt SASS och React styled components. Appen är responsiv.
 
 
 # Getting Started with Create React App

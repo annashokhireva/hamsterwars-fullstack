@@ -9,7 +9,7 @@ const HamsterForm = () => {
 	const [lovesTouched, setLovesTouched] = useState(false);
 	const [favFood, setFavfood] = useState('');
 	const [favFoodTouched, setFavFoodTouched] = useState(false);
-	const [img, setImg] = useState('');
+	const [imgName, setImg] = useState('');
 	const [imgTouched, setImgTouched] = useState(false);
 
 	let validName = true;
@@ -59,11 +59,14 @@ const HamsterForm = () => {
 		favFoodClass = validFavFood ? "valid" : "error";
 	}
 
+	const imgRegExp = new RegExp("[\S]*\.(?:png|jpe?g|gif|svg)");
 	let validImg = true;
 	let imgErrorMessage = "";
-	if (!img) {
+	let checkedImg = imgRegExp.test(imgName);
+
+	if(!checkedImg) {
 		validImg = false;
-		imgErrorMessage = "Please upload image";
+		imgErrorMessage = "Please write the name of the file ending with (.png, .jpg, .jpeg, .gig or .svg)";
 	}
 
 	let imgClass = "";
@@ -72,11 +75,6 @@ const HamsterForm = () => {
 	}
 
 	let invalidForm = !validName || !validAge || !validLoves || !validFavFood || !validImg;
-
-	let imgName = '';
-	function changeName(name){
-		imgName = name.replace(/^.*\\/, "");
-	}
 
 	
 	async function addHamster(event) {
@@ -90,7 +88,7 @@ const HamsterForm = () => {
 				age: Number(age),
 				loves: loves,
 				favFood: favFood,
-				imgName: img,
+				imgName: imgName,
 				wins: 0,
 				defeats: 0,
 				games: 0
@@ -100,12 +98,14 @@ const HamsterForm = () => {
 		try {
 			const response = await fetch('/api/hamsters', requestOptions);
 			const data = await response.json();
+			alert('Upload successful');
 			return data;
 		}	
 		catch (error) {
 			console.log("Upload failed, ", error);
 			return null;
 		}
+
 	}
 
 
@@ -175,11 +175,10 @@ const HamsterForm = () => {
 					<label>Upload your hamster's cutest image</label>
 					<input
 						value={imgName}
-						type="file"
-						accept=".png,.jpg,.jpeg"
+						type="text"
 						onBlur={() => setImgTouched(true)}
-						// onChange={(event) => changeName(event.target.value)}
-						onChange= {event => { changeName(event.target.value); setImg(imgName)}}
+						placeholder = "Enter file name ending with (.png, .jpg, .jpeg, .gig or .svg)"
+						onChange= {(event) => setImg(event.target.value)}
 						className={imgClass}
 					></input>
 					{imgTouched ? <div className="message"> {imgErrorMessage} </div> : null}
