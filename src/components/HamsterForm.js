@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const HamsterForm = () => {
-	const [name, setName] = useState("");
+	const [name, setName] = useState('');
 	const [nameTouched, setNameTouched] = useState(false);
-	const [age, setAge] = useState("");
+	const [age, setAge] = useState('');
 	const [ageTouched, setAgeTouched] = useState(false);
-	const [loves, setLoves] = useState("");
+	const [loves, setLoves] = useState('');
 	const [lovesTouched, setLovesTouched] = useState(false);
-	const [favFood, setFavfood] = useState("");
+	const [favFood, setFavfood] = useState('');
 	const [favFoodTouched, setFavFoodTouched] = useState(false);
-	const [img, setImg] = useState("");
+	const [img, setImg] = useState('');
 	const [imgTouched, setImgTouched] = useState(false);
 
 	let validName = true;
@@ -76,7 +76,6 @@ const HamsterForm = () => {
 	let imgName = '';
 	function changeName(name){
 		imgName = name.replace(/^.*\\/, "");
-		console.log(imgName);
 	}
 
 	
@@ -99,8 +98,6 @@ const HamsterForm = () => {
 		};
 
 		try {
-			console.log(requestOptions.body);
-
 			const response = await fetch('/api/hamsters', requestOptions);
 			const data = await response.json();
 			return data;

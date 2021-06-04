@@ -1,11 +1,4 @@
-import {
-	BrowserRouter as Router,
-	// Link,
-	Switch,
-	Route,
-	NavLink,
-	// Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Battle from "./components/Battle";
 import Gallery from "./components/Gallery";
@@ -14,9 +7,7 @@ import HamsterForm from "./components/HamsterForm";
 import Statistics from "./components/Statistics";
 import History from "./components/History";
 import "./sass/App.scss";
-// import Hamster from "./components/Hamster";
 
-//const hamstersData = [];
 
 function App() {
 	const [error, setError] = useState(null);
@@ -40,20 +31,10 @@ function App() {
 			);
 	}, []);
 
-	// function afterDelete(hamsterId){
-	// 	const currentHamsters = hamsters;
-	// 	setHamsters (
-	// 		currentHamsters.filter(hamster => hamster.id !== hamsterId)
-	// 	);
-	// }
-	// function afterDelete() {
-	// 	console.log('it is working!!!!');
-	// }
-
 	if (error) {
 		return (
 			<div className="error-message">
-				<img src="/img/500-error.png" alt="error 500"></img>
+				<img src="/img/error-img.png" alt="error 500"></img>
 			</div>
 		);
 	} else if (!isLoaded) {
@@ -104,7 +85,7 @@ function App() {
 						</Route>
 
 						<Route path="/history">
-							<History hamsters={hamsters}/>
+							<History hamsters={hamsters} />
 						</Route>
 
 						<Route path="/statistics">

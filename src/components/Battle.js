@@ -32,21 +32,18 @@ const Battle = () => {
 		if (params.id1 && params.id2) {
 			fetchHamsterId(setHamster1, params.id1);
 			fetchHamsterId(setHamster2, params.id2);
-		} 
-		else {
+		} else {
 			await fetchRandomHamster(setHamster1);
 			await fetchRandomHamster(setHamster2, hamster1.id);
 		}
 	}
 	useEffect(() => {
 		getHamsters();
-	}, [params]);
+	},[params]);
 
 	let contestants = hamster1 && hamster2;
 
 	async function handleWinner(winner, loser) {
-		console.log("winner: " + winner.name, "loser: " + loser.name);
-
 		updateWinsDefeats(winner, loser);
 		updateMatch(winner, loser);
 

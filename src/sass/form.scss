@@ -8,7 +8,7 @@
 	overflow: scroll;
 	width: 100vw;
 
-	
+
 	h2 {
 		text-align: center;
 		margin: 1em 0 0;
@@ -26,7 +26,7 @@
 		@media only screen and (min-width: 600px) {
 			width: 35em;
 		}
-	
+
 
 		label {
 			font-size: 24px;
@@ -39,6 +39,7 @@
 			border-radius: $corners;
 			padding-left: 0.5em;
 		}
+
 		.imgClass {
 			color: red;
 		}
@@ -47,7 +48,7 @@
 			border: 3px solid $starwars_red;
 		}
 
-		.valid { 
+		.valid {
 			border: 3px solid $starwars_green;
 		}
 	}
@@ -55,11 +56,11 @@
 	.message {
 		position: absolute;
 		top: 4em;
-		color: white;
-		background-color: $starwars_red;
+		color: $starwars_red;
+		font-weight: bold;
 		margin: 0.5em 0 0 0.1em;
 		padding: 0.2em;
-		border-radius: $corners;
-		box-sizing: border-box;
 	}
 }
+
+

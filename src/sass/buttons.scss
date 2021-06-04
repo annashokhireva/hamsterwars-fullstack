@@ -20,16 +20,14 @@
 		zoom: 1.05;
 		color: $starwars_yellow;
 		border: 3px solid $starwars_yellow;
-		background-color: transparentize($starwars_red, 0.2);	
+		background-color: transparentize($starwars_red, 0.2);
 	}
-	
+
 	&:disabled {
-		background-color:transparentize($starwars_yellow, 0.9);
+		background-color: transparentize($starwars_yellow, 0.9);
 		opacity: 60%;
 	}
 }
-
-
 
 .delete {
 	width: 30px;
@@ -40,7 +38,27 @@
 		cursor: pointer;
 		zoom: 1.1;
 	}
-	
+
 }
 
+.delete-match {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
+	.match-del-btn {
+		border: 3px solid $starwars_red;
+		font-size: 18px;
+		color: $starwars_yellow;
+		background-color: transparentize($starwars_red, 0.2);
+		border-radius: $corners;
+
+		&:hover {
+			color: $starwars_red;
+			border: 3px solid $starwars_red;
+			background-color: transparentize($starwars_yellow, 0.2);
+			cursor: pointer;
+		}
+	}
+}

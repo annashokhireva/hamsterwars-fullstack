@@ -70,7 +70,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
 	const object = req.body;
 
-	console.log(object);
+	// console.log(object);
 	
 	if(!object.winnerId || !object.loserId || Object.keys(object).length === 0) {
 		res.sendStatus(400);

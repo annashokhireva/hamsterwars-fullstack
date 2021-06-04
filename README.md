@@ -1,3 +1,9 @@
+# G och VG krav uppföljda.
+
+Har amvänt SASS och  React styled components.
+
+Jag vill ha återkoppling på min lösning på galleriet, då gick det inte att avnända filter eller splice metoder (försökt även med  functional setState method). 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

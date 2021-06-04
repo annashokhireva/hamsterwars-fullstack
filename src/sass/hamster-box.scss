@@ -19,12 +19,16 @@
 			justify-self: center;
 			align-self: start;
 		}
-
 	}
 }
 
+.history-view {
+	margin: $space;
+}
+
 .hamster-box,
-.hamster-btn {
+.hamster-btn,
+.history-box {
 	width: 20em;
 	color: rgb(19, 14, 29);
 	align-self: center;
@@ -77,12 +81,10 @@
 		object-fit: cover;
 		object-position: 100% 0;
 	}
+}
 
-	@media only screen and (min-width: 600px) {
-		// height: 10em;
-		// width: 10em
-	}
-
+.history-box {
+	background-color: $starwars_dark;
 }
 
 .hamster-info,

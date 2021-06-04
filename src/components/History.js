@@ -1,21 +1,12 @@
-import { useState, useEffect } from 'react';
-import { fetchHamsterId } from './utils/hamsterId';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
-
-const History = ({hamsters}) => {
+const History = ({ hamsters }) => {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [matches, setMatches] = useState(null);
 
-	const [winner, setWinner] = useState({});
-	const [loser, setLoser] = useState({});
-
-	// const params = useParams();
-	
-	useEffect(() => {
-		function getMatches() {
-			fetch("/api/matches", { method: "GET" })
+	function getMatches() {
+		fetch("/api/matches", { method: "GET" })
 			.then((res) => res.json())
 			.then(
 				(result) => {
@@ -28,50 +19,26 @@ const History = ({hamsters}) => {
 					setError(error);
 					console.log(error);
 				}
-			)
-		};
+			);
+	}
+
+	useEffect(() => {
 		getMatches();
-
-		// const params = useParams();
-
-	
-		// async function getHamsters() {
-
-		// 	if(params.id1 && params.id2) {
-				
-		// 		fetchHamsterId(setHamster1, params.id1);
-		// 		fetchHamsterId(setHamster2, params.id2);
-
-		// 	} else {
-				
-		// 		await getMatches(setHamster1);
-		// 		await getMatches(setHamster1);;
-
-		// 	}
-
-		// }
-		
-		// getHamsters();
-
 	}, []);
 
-	// function showWinner(matches, props) {
-	// 	// matches.map((match) => 
-	// 	// 	{setWinner(match.winnerId)});
-	// 	console.log(matches, props);	
-	// 	// props.hamsters.filter(hamster => hamster.id === {winner})
-	// }
-	// showWinner();
-	// console.log(matches, props);
-
-	// let matchWinner = matches.map(match => match.winnerId);
-
-	// let test = props.hamsters.filter(hamster => hamster.id === this.match.winnerId);
-
-	// let test = matches.map((match) => {match.winnerId});
-
-
-	console.log(hamsters);
+	async function deleteMatch(id) {
+		await fetch("/api/matches/" + id, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+		}).then((res) => {
+			// console.log(JSON.stringify(res))
+			// return res.json();
+			getMatches();
+		});
+	}
 
 
 	if (error) {
@@ -92,15 +59,66 @@ const History = ({hamsters}) => {
 	} else {
 		return (
 			<div className="main-view">
-				{matches ? (
-					matches.map((match) => (
-						<div key={match.id} >
-							{match.winnerId} vs {match.loserId}
-							
-						</div>
-					))
-				):
-				'loading'}
+				{matches
+					? matches.map((match) => (
+							<div key={match.id} className="history-view">
+								{hamsters
+									.filter(
+										(hamster) =>
+											hamster.id === match.winnerId &&
+											match.winnerId !== match.loserId
+									)
+									.map((filteredHamster) => (
+										<div key={match.winnerId} className="history-box">
+											<div className="hamster-img">
+												<img
+													src={`/api/assets/${filteredHamster.imgName}`}
+													alt={`Hamster + ${filteredHamster.id}`}
+												/>
+											</div>
+											<div className="hamster-info">
+												<h3>{filteredHamster.name}</h3>
+											</div>
+										</div>
+									))}
+								<div className="delete-match">
+									<h2> 1:0 </h2>
+									<button
+										className="match-del-btn"
+										onClick={() => deleteMatch(match.id)}
+									>
+										Delete match
+									</button>
+								</div>
+
+								{hamsters
+									.filter(
+										(hamster) =>
+											hamster.id === match.loserId &&
+											match.winnerId !== match.loserId
+									)
+									.map((filteredHamster) => (
+										<div key={match.loserId} className="history-box">
+											<div className="hamster-img">
+												<img
+													src={`/api/assets/${filteredHamster.imgName}`}
+													alt={`Hamster + ${filteredHamster.id}`}
+												/>
+											</div>
+											<div className="hamster-info">
+												<h3>{filteredHamster.name}</h3>
+											</div>
+										</div>
+									))}
+
+								{/* 
+							<div> {hamsters.filter(hamster => hamster.id === match.loserId).map(filteredHamster => (
+								<div>{filteredHamster.name}</div>
+							))}
+							</div> */}
+							</div>
+					  ))
+					: "loading"}
 			</div>
 		);
 	}

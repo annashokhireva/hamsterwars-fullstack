@@ -1,70 +1,30 @@
-// import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Hamster from "./Hamster";
 
+const Gallery = ({ hamsters }) => {
+	const [galleryHamsters, setGalleryHamsters] = useState(null);
 
-// export const GalleryGrid = styled.div`
-// 	width: 100%;
-// 	display: grid;
-// 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-// 	grid-auto-rows: auto;
-// 	row-gap: 1.5em;
-// 	column-gap: 2.5em;
-// 	margin: 2em;
-// 	padding: 0 2em;
+	useEffect(() => {
+		if (hamsters) {
+			setGalleryHamsters([...hamsters]);
+		}
+	}, [hamsters]);
 
-// 	> * {
-// 		justify-self: center;
-// 	}
+	function deleteHamster(hamster) {
+		fetch("/api/hamsters", { method: "GET" })
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					setGalleryHamsters(result);
+				},
 
-// 	@media only screen and (min-width: 600px) {
-// 		flex-direction: row;
-// 		justify-content: center;
-// 	}
-// `;
+				(error) => {
+					console.log(error);
+				}
+			);
+	}
 
-
-const Gallery = ({hamsters}) => {
-
-	// console.log(hamsters);
-	const [galleryHamsters, setGalleryHamsters] = useState({hamsters});
-	console.log(galleryHamsters);
-
-	function handleRemove(id) {
-		const newList = galleryHamsters.filter((item) => item.id !== id);
- 
-		console.log(newList);
-    	// setGalleryHamsters(newList);
-	  }
-
-	// function afterDelete(hamsterId){
-	// 	const currentHamsters = hamsters;
-	// 	setGalleryHamsters (
-	// 		currentHamsters.filter(hamster => hamster.id !== hamsterId)
-	// 	);
-	// 	console.log(galleryHamsters);
-	// }
-
-	// function updateHamsters(){
-
-	// 	fetch("/api/hamsters", { method: "GET" })
-	// 		.then((res) => res.json())
-	// 		.then(
-	// 			(result) => {
-					
-	// 				hamsters = result;
-	// 			},
-
-	// 			(error) => {
-					
-	// 				console.log(error);
-	// 			}
-	// 		);
-		
-
-	// }
-	
 
 	return (
 		<div className="main-view">
@@ -74,50 +34,20 @@ const Gallery = ({hamsters}) => {
 						src="/icons/hamster-logo.svg"
 						alt="Hamster icon"
 						className="hamster-img hamster-icon"
-					></img>
+					/>
 					<div className="add-new">
 						<h3>+ Add new hamster</h3>
 					</div>
 				</Link>
 
-				{/* <Hamster props={props}/> */}
-				{hamsters ? (
-					hamsters.map((hamster, i) => (
-						<Hamster hamster={hamster} showDelete={true} key={hamster.id} onClick={handleRemove(hamster.id)}/>
-						// <div
-						// 	className="hamster-box"
-						// 	key={hamster.id}
-						// >
-						// 	<img
-						// 		src={`/api/assets/${hamster.imgName}`}
-						// 		alt={`Hamster  ${hamster.id}`}
-						// 		className="hamster-img"
-						// 	></img>
-
-						// 	<div className="hamster-info">
-						// 		<h2>{hamster.name} </h2>
-
-						// 		<div className="extra-info"
-						// 		>
-						// 			<p>Age:{hamster.age}</p>
-						// 			<p>Favourite food: {hamster.favFood} </p>
-						// 			<p>Loves: {hamster.loves}</p>
-						// 			<p>Battles: {hamster.games} </p>
-						// 			<p>Wins: {hamster.wins}</p>
-						// 			<p>Defeats: {hamster.defeats} </p>
-						// 			<img
-						// 				src="/icons/delete.svg"
-						// 				alt="Cross icon"
-						// 				className="delete"
-						// 				onClick={() => {
-						// 					deleteHamster(hamster.id)
-						// 					}}
-						// 				//filter (ändra function) (listor)
-						// 			></img>
-						// 		</div>
-						// 	</div>
-						// </div>
-						
+				{galleryHamsters ? (
+					galleryHamsters.map((hamster) => (
+						<Hamster
+							hamster={hamster}
+							showDelete={true}
+							key={hamster.id}
+							onDelete={() => deleteHamster(hamster)}
+						/>
 					))
 				) : (
 					<div className="loader">
@@ -127,7 +57,6 @@ const Gallery = ({hamsters}) => {
 						</div>
 					</div>
 				)}
-
 			</div>
 		</div>
 	);

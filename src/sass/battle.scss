@@ -6,13 +6,32 @@
 	height: 100%;
 }
 
+.history-view {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 90vw;
+	margin-bottom: $space *4;
+
+	h2 {
+		margin-top: 0;
+	}
+
+	@media only screen and (min-width: 600px) {
+		flex-direction: row;
+		margin-bottom: $space *2;
+	}
+
+}
+
 .hamster-box-battle {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 20em;	
+	width: 20em;
 	height: auto;
-	margin: 3em 1em; 
+	margin: 3em 1em;
 	border-radius: $corners;
 
 	img {
@@ -26,7 +45,7 @@
 	}
 
 	@media only screen and (min-width: 600px) {
-		margin: 1em 3em; 
+		margin: 1em 3em;
 	}
 }
 
@@ -34,10 +53,10 @@
 .game-info {
 	width: 300px;
 	border-radius: $corners;
-	background-color: transparentize(white, 0.1) ;
+	background-color: transparentize(white, 0.1);
 	margin: 0 auto;
 	padding: $space;
-	display:  flex;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	color: $starwars_dark;
